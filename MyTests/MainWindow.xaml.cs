@@ -24,5 +24,10 @@ namespace MyTests
         {
             InitializeComponent();
         }
+
+        private void XEXE_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

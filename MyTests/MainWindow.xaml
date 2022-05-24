@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="XEXE" Text="НАМ ХАНА!" Margin="252,168,261,169" FontSize="50"  ></TextBox>
+        <TextBox x:Name="XEXE" Text="СЛУШАЮ" Margin="252,168,261,169" FontSize="50"></TextBox>
     </Grid>
 </Window>
