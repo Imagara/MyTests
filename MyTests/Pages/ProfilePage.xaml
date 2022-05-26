@@ -1,0 +1,70 @@
+﻿<Page x:Class="MyTests.Pages.ProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MyTests.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="419"
+      d:DesignWidth="692"
+      Title="ProfilePage"
+      Background="{StaticResource color1}">
+    <Grid Margin="25"
+          Background="{StaticResource color2}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="55*"/>
+            <ColumnDefinition Width="159*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <StackPanel Orientation="Vertical" 
+                        Grid.Column="0"
+                        VerticalAlignment="Top"
+                        Margin="5">
+                <TextBlock Text="Name"
+                           HorizontalAlignment="Center"
+                           FontSize="20">
+                </TextBlock>
+                <Image 
+                    Name="ProfileImg"
+                    Height="auto"
+                    Width="auto"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,15"
+                    Source="/MyTests;component/Resources/StandartImage.png"/>
+                <Button Content="Изменить"
+                        HorizontalAlignment="Center" 
+                        Height="30"
+                        Width="150"
+                        VerticalAlignment="Top"
+                        Click="EditImageButton_Click"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="95*"/>
+                <RowDefinition Height="274*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical"
+                        Margin="10,10,10,0"
+                        Background="{StaticResource color3}"
+                        VerticalAlignment="Top" Height="74">
+                <Label Name="EmailBox"
+                       Content="Markus Bodhi"
+                       FontSize="20"/>
+                <Label Name="InfoBox"
+                       Content="Info:"
+                       FontSize="20"/>
+            </StackPanel>
+            <ListBox Grid.Row="1"
+                     Name="TestsListBox"
+                     Margin="10"
+                     Background="{StaticResource color3}"
+                     BorderBrush="{StaticResource color3}">
+                <ScrollViewer Name="scroll"
+                              VerticalScrollBarVisibility="Visible">
+                </ScrollViewer>
+            </ListBox>
+        </Grid>
+    </Grid>
+</Page>

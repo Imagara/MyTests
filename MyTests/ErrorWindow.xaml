@@ -1,0 +1,32 @@
+﻿<Window x:Class="MyTests.ErrorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyTests"
+        mc:Ignorable="d"
+        Title="ErrorWindow" 
+        MinHeight="120" 
+        Height="120"
+        Width="300" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" 
+        ResizeMode="NoResize">
+    <Grid Background="#FF2D2D2D">
+        <TextBlock Name="ErrorLabel" 
+               Text="Ошибка." 
+               TextWrapping="Wrap"
+               HorizontalAlignment="Center" 
+               Margin="19,10,19,0" 
+               VerticalAlignment="Top" 
+               Width="262">
+        </TextBlock>
+        <Button Content="Закрыть" 
+                VerticalAlignment="Bottom" 
+                HorizontalAlignment="Center" 
+                Height="30" 
+                Width="130" 
+                Margin="0,0,0,15" 
+                Click="BackClick"/>
+    </Grid>
+</Window>
