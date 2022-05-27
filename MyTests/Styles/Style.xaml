@@ -27,11 +27,18 @@
         <Setter Property="BorderBrush" Value="Black"/>
         <Setter Property="Background" Value="#33363C"/>
     </Style>
-    
+
+    <Style TargetType="PasswordBox">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="Background" Value="#33363C"/>
+    </Style>
+
     <Style TargetType="TextBlock">
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Background" Value="{x:Null}"/>
     </Style>
+    
 
     <Style TargetType="ComboBox">
         <Setter Property="Foreground" Value="White"/>

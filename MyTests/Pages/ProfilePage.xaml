@@ -5,71 +5,77 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MyTests.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="419"
-      d:DesignWidth="692"
-      Title="ProfilePage"
+      d:DesignHeight="450" 
+      d:DesignWidth="800"
+      Title="PartInfoPage"
       Background="{StaticResource color1}">
-    <Grid Margin="25"
-          Background="{StaticResource color2}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="55*"/>
-            <ColumnDefinition Width="159*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <StackPanel Orientation="Vertical" 
-                        Grid.Column="0"
-                        VerticalAlignment="Top"
-                        Margin="5">
-                <TextBlock Text="Name"
-                           HorizontalAlignment="Center"
-                           FontSize="20">
-                </TextBlock>
-                <Image 
-                    Name="ProfileImg"
-                    Height="auto"
-                    Width="auto"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Center"
-                    Margin="0,0,0,15"
-                    Source="/MyTests;component/Resources/StandartImage.png"/>
-                <Button Content="Изменить"
-                        HorizontalAlignment="Center" 
-                        Height="30"
-                        Width="150"
-                        VerticalAlignment="Top"
-                        Click="EditImageButton_Click"/>
-            </StackPanel>
+
+    <Grid Background="{StaticResource color2}"
+          Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="215*"/>
+            <RowDefinition Height="173*"/>
+            <RowDefinition Height="42*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="57*"/>
+                <ColumnDefinition Width="143*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Name="PartImage"
+                   Grid.Column="0"
+                   Margin="10"
+                   Source="/MyTests;component/Resources/StandartImage.png">
+                   <!--MouseDown="Img_MouseDown"-->
+            </Image>
+
+            <Grid Grid.Column="1"
+                  Margin="10"
+                  Background="{StaticResource color3}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="49"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBox Grid.Row="0"
+                         Name="EmailBox"
+                         Text="Email"
+                         FontSize="22"
+                         Background="{x:Null}"
+                         BorderBrush="{x:Null}"
+                         MinWidth="50">
+                </TextBox>
+
+                <Label Grid.Row="1"
+                       Content="Инфо: "
+                       FontSize="22">
+                </Label>
+            </Grid>
         </Grid>
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="95*"/>
-                <RowDefinition Height="274*"/>
-            </Grid.RowDefinitions>
-            <StackPanel Orientation="Vertical"
-                        Margin="10,10,10,0"
-                        Background="{StaticResource color3}"
-                        VerticalAlignment="Top" Height="74">
-                <Label Name="EmailBox"
-                       Content="Email:"
-                       FontSize="20"/>
-                <Label Name="InfoBox"
-                       Content="Info:"
-                       FontSize="20"/>
+
+        <ListBox Grid.Row="1"
+                 Background="{StaticResource color3}"
+                 BorderBrush="{StaticResource color3}">
+        </ListBox>
+
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Center">
+                <Button Width="120"
+                        Margin="5,0,5,0"
+                        Content="Назад"
+                        FontSize="20"
+                        Click="BackButton">
+                </Button>
+                <Button Width="120"
+                        Margin="5,0,5,0"
+                        Content="Сохранить"
+                        FontSize="20"
+                        Click="SaveButton">
+                </Button>
             </StackPanel>
-            <!--<ListBox Grid.Row="1"
-                     Name="TestsListBox"
-                     Margin="10"
-                     Background="{StaticResource color3}"
-                     BorderBrush="{StaticResource color3}">
-                <ScrollViewer Name="scroll"
-                              VerticalScrollBarVisibility="Visible">
-                </ScrollViewer>
-            </ListBox>-->
-            <ListBox Name="list" DisplayMemberPath="Title" Grid.Row="1">
-                <local:Phone Title="iPhone 6S" Company="Apple" Price="54990" />
-                <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
-                <local:Phone Title="Nexus 5X" Company="Google" Price="29990" />
-            </ListBox>
+
         </Grid>
     </Grid>
 </Page>

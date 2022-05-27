@@ -37,14 +37,14 @@ namespace MyTests
             #endregion
         }
 
-        //public static BitmapImage NewImage(Parts part)
-        //{
-        //    MemoryStream ms = new MemoryStream(part.Image);
-        //    BitmapImage image = new BitmapImage();
-        //    image.BeginInit();
-        //    image.StreamSource = ms;
-        //    image.EndInit();
-        //    return image;
-        //}
+        public static BitmapImage NewImage(Users user)
+        {
+            MemoryStream ms = new MemoryStream(user.Image);
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.StreamSource = ms;
+            image.EndInit();
+            return image;
+        }
     }
 }
