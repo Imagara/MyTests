@@ -19,7 +19,7 @@
                 MouseDown="Border_MouseDown" 
                 Grid.Row="0">
             <Grid HorizontalAlignment="Stretch">
-                <Label Content="PartsWarehouse"
+                <Label Content="MyTests"
                        Foreground="Gray"
                        FontWeight="SemiBold"/>
 
@@ -81,7 +81,8 @@
                 </Button>
             </StackPanel>
             <Frame Name="MainFrame" 
-                   Grid.Column="1">
+                   Grid.Column="1"
+                   NavigationUIVisibility="Hidden">
             </Frame>
         </Grid>
     </Grid>

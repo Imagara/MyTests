@@ -28,7 +28,6 @@
                    Grid.Column="0"
                    Margin="10"
                    Source="/MyTests;component/Resources/StandartImage.png">
-                   <!--MouseDown="Img_MouseDown"-->
             </Image>
 
             <Grid Grid.Column="1"

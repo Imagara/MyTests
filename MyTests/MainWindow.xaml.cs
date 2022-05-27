@@ -57,7 +57,7 @@ namespace MyTests
 
         private void TestsCatalogClick(object sender, RoutedEventArgs e)
         {
-            //MainFrame.Content = new СatalogPage();
+            MainFrame.Content = new Pages.TestsCatalog();
         }
         private void CreateTestClick(object sender, RoutedEventArgs e)
         {

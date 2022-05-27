@@ -85,6 +85,12 @@
     <Compile Include="Pages\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\TestPage.xaml.cs">
+      <DependentUpon>TestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TestsCatalog.xaml.cs">
+      <DependentUpon>TestsCatalog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Questions.cs">
       <DependentUpon>EDM.tt</DependentUpon>
     </Compile>
@@ -126,6 +132,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\ProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TestsCatalog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
