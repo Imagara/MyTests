@@ -64,6 +64,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Answer.cs">
+      <DependentUpon>EDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EDM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="EDM.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -72,7 +85,17 @@
     <Compile Include="Pages\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Questions.cs">
+      <DependentUpon>EDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Session.cs" />
     <Compile Include="Styles\Style.cs" />
+    <Compile Include="Tests.cs">
+      <DependentUpon>EDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>EDM.tt</DependentUpon>
+    </Compile>
     <Page Include="ConfirmationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -147,6 +170,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\StandartImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EDM.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EDM.edmx</DependentUpon>
+      <LastGenOutput>EDM.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EDM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EDM.edmx</DependentUpon>
+      <LastGenOutput>EDM.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

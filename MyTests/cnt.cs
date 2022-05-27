@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyTests
+﻿namespace MyTests
 {
-    class cnt
+    public class cnt
     {
-
+        public static MyTestsDataBaseEntities db = new MyTestsDataBaseEntities();
     }
 }

@@ -50,13 +50,13 @@
                         Background="{StaticResource color3}"
                         VerticalAlignment="Top" Height="74">
                 <Label Name="EmailBox"
-                       Content="Markus Bodhi"
+                       Content="Email:"
                        FontSize="20"/>
                 <Label Name="InfoBox"
                        Content="Info:"
                        FontSize="20"/>
             </StackPanel>
-            <ListBox Grid.Row="1"
+            <!--<ListBox Grid.Row="1"
                      Name="TestsListBox"
                      Margin="10"
                      Background="{StaticResource color3}"
@@ -64,6 +64,11 @@
                 <ScrollViewer Name="scroll"
                               VerticalScrollBarVisibility="Visible">
                 </ScrollViewer>
+            </ListBox>-->
+            <ListBox Name="list" DisplayMemberPath="Title" Grid.Row="1">
+                <local:Phone Title="iPhone 6S" Company="Apple" Price="54990" />
+                <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
+                <local:Phone Title="Nexus 5X" Company="Google" Price="29990" />
             </ListBox>
         </Grid>
     </Grid>

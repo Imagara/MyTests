@@ -23,6 +23,7 @@ namespace MyTests.Pages
         public ProfilePage()
         {
             InitializeComponent();
+            TestsLoading();
             //if (cnt.db.Dispatcher.Where(item => item.IdDispatcher == profile.DispatcherId).Select(item => item.ProfileImgSource).FirstOrDefault() != null)
             //    ProfileImg.Source = new BitmapImage(new Uri(cnt.db.Dispatcher.Where(item => item.IdDispatcher == profile.DispatcherId).Select(item => item.ProfileImgSource).FirstOrDefault()));
             //NameSurnameBox.Content = cnt.db.Dispatcher.Where(item => item.IdDispatcher == profile.DispatcherId).Select(item => item.Name + " " + item.Surname).FirstOrDefault();
@@ -47,5 +48,30 @@ namespace MyTests.Pages
             //    cnt.db.SaveChanges();
             //}
         }
+        private void TestsLoading()
+        {
+            foreach (Tests test in cnt.db.Tests.Where(item => item.IdUser == Session.userId).ToList())
+            {
+                try
+                {
+
+                    AddTest(test.Name, test.Image, cnt.db.Questions.Where(item => item.IdTest == test.IdTest).Count());
+                }
+                catch (Exception ex)
+                {
+                    new ErrorWindow(ex.ToString()).ShowDialog();
+                }
+            }
+        } 
+        private void AddTest(string name, BitmapImage image, int questCount)
+        {
+           
+        }
+    }
+    class Test
+    {
+        public string Name { get; set; }
+        public Image Image { get; set; }
+        public int QuestionsCount { get; set; }
     }
 }
