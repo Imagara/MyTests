@@ -1,0 +1,25 @@
+﻿<Window x:Class="MyTests.RegAuth"
+        ResizeMode="NoResize" WindowStyle="SingleBorderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyTests"
+        mc:Ignorable="d"
+        Title="RegAuth" Height="475" Width="475">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="25*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Регистрация" Width="140" Height="75" FontSize="20" Margin="40, 0, 40, 0" Click="WindowRegistration"></Button>
+            <Button Content="Вход"  Width="140" Height="75" FontSize="25" Margin="40, 0, 40, 0" Click="WindowEntry"></Button>
+        </StackPanel>
+        <Frame
+            Name="MainFrame"
+            NavigationUIVisibility="Hidden"
+            Grid.Row="0">
+        </Frame>
+    </Grid>
+</Window>
