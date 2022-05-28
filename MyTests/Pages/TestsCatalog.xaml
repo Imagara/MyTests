@@ -18,6 +18,12 @@
                 Margin="5">
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
+                <Button Height="45"
+                        Width="45"
+                        Content="+"
+                        FontSize="30"
+                        Click="AddTest_Click">
+                </Button>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="0"
                             HorizontalAlignment="Center">
@@ -35,9 +41,9 @@
                 </StackPanel>
                 <Button Height="45"
                         Width="45"
-                        Content="+"
-                        FontSize="30"
-                        Click="AddTest_Click">
+                        Click="FindTests_Click">
+                    <Image Source="/MyTests;component/Resources/search.png"
+                           Margin="10"/>
                 </Button>
             </StackPanel>
 
@@ -46,9 +52,35 @@
 
         <ListBox Name="TestsListBox"
                  Grid.Row="1"
-                 Background="{StaticResource color2}"
+                 Background="{StaticResource color1}"
                  BorderBrush="{Binding TestsListBox}">
             <ScrollViewer VerticalScrollBarVisibility="Visible"/>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Width="785"
+                            Height="45"
+                            CornerRadius="10"
+                          Background="{StaticResource color2}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="35"
+                               Height="35"
+                               Margin="5"
+                               HorizontalAlignment="Left"
+                               Source="/MyTests;component/Resources/approval.png">
+                            </Image>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Тестовый тест"/>
+                                    <Label Content="by ima"/>
+                                </StackPanel>
+                                <Label Content="Вопросов: 15"
+                                   Margin="0,-7,0,0">
+                                </Label>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
     </Grid>
 </Page>

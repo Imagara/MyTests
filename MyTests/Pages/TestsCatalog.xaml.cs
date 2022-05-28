@@ -23,7 +23,8 @@ namespace MyTests.Pages
         public TestsCatalog()
         {
             InitializeComponent();
-            LoadingTests();
+
+            //LoadingTests();
         }
 
         private void AddTest_Click(object sender, RoutedEventArgs e)
@@ -74,12 +75,17 @@ namespace MyTests.Pages
         void LoadingTests()
         {
             TestsListBox.Items.Clear();
-            foreach (Tests test in cnt.db.Tests.Where(item => item.IdUser == Session.userId).ToList())
+            var list = cnt.db.Tests.Where(item => item.IdUser == Session.userId).ToList();
+            if(TestNameBox.Text != "Название теста")
+                list = list.Where(item => item.Name == TestNameBox.Text).ToList();
+            if(AuthorTestBox.Text != "Автор")
+                list = list.Where(item => item.Users.Login == AuthorTestBox.Text).ToList();
+            foreach (Tests test in list)
             {
                 try
                 {
                     BitmapImage img = test.Image == null ?
-                        new BitmapImage(new Uri("../Resources/StandartProfile.png", UriKind.RelativeOrAbsolute)) :
+                        new BitmapImage(new Uri("../Resources/Approval.png", UriKind.RelativeOrAbsolute)) :
                         ImagesManip.NewImage(cnt.db.Users.Where(item => item.IdUser == Session.userId).FirstOrDefault());
                     AddTest(test.Name, img, cnt.db.Questions.Where(item => item.IdTest == test.IdTest).Count());
                 }
@@ -88,6 +94,11 @@ namespace MyTests.Pages
                     new ErrorWindow(ex.ToString()).ShowDialog();
                 }
             }
+        }
+
+        private void FindTests_Click(object sender, RoutedEventArgs e)
+        {
+            LoadingTests();
         }
     }
 }
