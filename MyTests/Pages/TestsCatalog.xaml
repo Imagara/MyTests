@@ -46,8 +46,6 @@
                            Margin="10"/>
                 </Button>
             </StackPanel>
-
-
         </Border>
 
         <ListBox Name="TestsListBox"
@@ -70,8 +68,8 @@
                             </Image>
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <Label Content="Тестовый тест"/>
-                                    <Label Content="by ima"/>
+                                    <Label Content="{Binding TestName}"/>
+                                    <Label Content="{Binding TestAuthor}"/>
                                 </StackPanel>
                                 <Label Content="Вопросов: 15"
                                    Margin="0,-7,0,0">

@@ -23,7 +23,6 @@ namespace MyTests.Pages
         public TestsCatalog()
         {
             InitializeComponent();
-
             //LoadingTests();
         }
 
@@ -80,6 +79,7 @@ namespace MyTests.Pages
                 list = list.Where(item => item.Name == TestNameBox.Text).ToList();
             if(AuthorTestBox.Text != "Автор")
                 list = list.Where(item => item.Users.Login == AuthorTestBox.Text).ToList();
+
             foreach (Tests test in list)
             {
                 try
@@ -87,7 +87,8 @@ namespace MyTests.Pages
                     BitmapImage img = test.Image == null ?
                         new BitmapImage(new Uri("../Resources/Approval.png", UriKind.RelativeOrAbsolute)) :
                         ImagesManip.NewImage(cnt.db.Users.Where(item => item.IdUser == Session.userId).FirstOrDefault());
-                    AddTest(test.Name, img, cnt.db.Questions.Where(item => item.IdTest == test.IdTest).Count());
+                    TestsListBox.ItemsSource = new[] { new { TestName = test.Name, TestAuthor = test.Users.Login } };
+                    //AddTest(test.Name, img, cnt.db.Questions.Where(item => item.IdTest == test.IdTest).Count());
                 }
                 catch (Exception ex)
                 {

@@ -58,7 +58,7 @@ namespace MyTests.Pages
         }
         private void AddTest(string name, BitmapImage image, int questCount)
         {
-            MessageBox.Show($"{name}, quests:, {questCount}");
+            //MessageBox.Show($"{name}, quests:, {questCount}");
         }
 
         private void SaveButton(object sender, RoutedEventArgs e)

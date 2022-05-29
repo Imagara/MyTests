@@ -1,4 +1,6 @@
-﻿namespace MyTests
+﻿using System.Linq;
+
+namespace MyTests
 {
     public class Functions
     {
@@ -26,18 +28,18 @@
             else
                 return true;
         }
-        //// Проверка на правильность введеных данных при входе
-        //public static bool LoginCheck(string login, string password)
-        //{
-        //    if (cnt.db.User.Select(item => item.Login + item.Password).Contains(login + Encrypt.GetHash(password)))
-        //        return true;
-        //    else
-        //        return false;
-        //}
-        //// Проверка на уникальность логина
-        //public static bool IsLoginAlreadyTaken(string login)
-        //{
-        //    return cnt.db.User.Select(item => item.Login).Contains(login);
-        //}
+        // Проверка на правильность введеных данных при входе
+        public static bool LoginCheck(string login, string password)
+        {
+            //if (cnt.db.Users.Select(item => item.Login + item.Password).Contains(login + Encrypt.GetHash(password)))
+                return true;
+            //else
+            //    return false;
+        }
+        // Проверка на уникальность логина
+        public static bool IsLoginAlreadyTaken(string login)
+        {
+            return cnt.db.Users.Select(item => item.Login).Contains(login);
+        }
     }
 }
