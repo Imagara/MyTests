@@ -58,7 +58,8 @@
                     <Border Width="785"
                             Height="45"
                             CornerRadius="10"
-                          Background="{StaticResource color2}">
+                            Background="{StaticResource color2}"
+                            MouseDown="TestsListBox_Selected">
                         <StackPanel Orientation="Horizontal">
                             <Image Width="35"
                                Height="35"
@@ -68,8 +69,8 @@
                             </Image>
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <Label Content="{Binding TestName}"/>
-                                    <Label Content="{Binding TestAuthor}"/>
+                                    <Label Content="{Binding Name}"/>
+                                    <Label Content="{Binding Users.Login}"/>
                                 </StackPanel>
                                 <Label Content="Вопросов: 15"
                                    Margin="0,-7,0,0">

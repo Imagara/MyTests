@@ -8,6 +8,61 @@
       d:DesignHeight="450" 
       d:DesignWidth="800">
     <Grid Background="{StaticResource color1}">
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Left">
+            <Image Name="TestImg"
+                   Source="/MyTests;component/Resources/Approval.png"
+                   Margin="7">
+            </Image>
+            <Label Name="TestName"
+                   Content="Название теста"
+                   FontSize="25">
+            </Label>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Label Content="by"
+                   FontSize="25">
+            </Label>
+            <Image Name="AuthorImg"
+                   Source="/MyTests;component/Resources/StandartImage.png"
+                   Margin="7">
+            </Image>
+            <Label Name="AuthorName"
+                   Content="Автор"
+                   FontSize="25">
+            </Label>
+        </StackPanel>
+        <ListBox Name="TestsListBox"
+                 Background="{StaticResource color1}"
+                 BorderBrush="{Binding TestsListBox}" 
+                 Grid.Row="1">
+            <ScrollViewer VerticalScrollBarVisibility="Visible"/>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Width="640"
+                            Height="50"
+                            CornerRadius="10"
+                            Background="{StaticResource color2}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="35"
+                               Height="35"
+                               Margin="5"
+                               HorizontalAlignment="Left"
+                               Source="/MyTests;component/Resources/approval.png">
+                            </Image>
+                            <StackPanel>
+                                <Label Content="{Binding Content}"/>
+                                <TextBox Text="Ответ:"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>

@@ -4,24 +4,15 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище MyTestsDataBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Answer">
-          <Key>
-            <PropertyRef Name="IdAnswer" />
-          </Key>
-          <Property Name="IdAnswer" Type="int" Nullable="false" />
-          <Property Name="IdQuestion" Type="int" Nullable="false" />
-          <Property Name="Content" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="isTrue" Type="bit" Nullable="false" />
-        </EntityType>
+    <Schema Namespace="Хранилище MyTestsDataBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Questions">
           <Key>
             <PropertyRef Name="IdQuestion" />
           </Key>
           <Property Name="IdQuestion" Type="int" Nullable="false" />
           <Property Name="IdTest" Type="int" Nullable="false" />
-          <Property Name="QuestionNum" Type="int" />
           <Property Name="Content" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Answer" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="Tests">
           <Key>
@@ -43,18 +34,6 @@
           <Property Name="Info" Type="nvarchar" MaxLength="50" />
           <Property Name="Image" Type="varbinary(max)" />
         </EntityType>
-        <Association Name="FK_Answer_Questions">
-          <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
-          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Questions">
-              <PropertyRef Name="IdQuestion" />
-            </Principal>
-            <Dependent Role="Answer">
-              <PropertyRef Name="IdQuestion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Questions_Tests">
           <End Role="Tests" Type="Self.Tests" Multiplicity="1" />
           <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
@@ -80,14 +59,9 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище MyTestsDataBaseModelContainer">
-          <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tests" EntityType="Self.Tests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Answer_Questions" Association="Self.FK_Answer_Questions">
-            <End Role="Questions" EntitySet="Questions" />
-            <End Role="Answer" EntitySet="Answer" />
-          </AssociationSet>
           <AssociationSet Name="FK_Questions_Tests" Association="Self.FK_Questions_Tests">
             <End Role="Tests" EntitySet="Tests" />
             <End Role="Questions" EntitySet="Questions" />
@@ -97,31 +71,19 @@
             <End Role="Tests" EntitySet="Tests" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MyTestsDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Answer">
-          <Key>
-            <PropertyRef Name="IdAnswer" />
-          </Key>
-          <Property Name="IdAnswer" Type="Int32" Nullable="false" />
-          <Property Name="IdQuestion" Type="Int32" Nullable="false" />
-          <Property Name="Content" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="isTrue" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Questions" Relationship="Self.FK_Answer_Questions" FromRole="Answer" ToRole="Questions" />
-        </EntityType>
         <EntityType Name="Questions">
           <Key>
             <PropertyRef Name="IdQuestion" />
           </Key>
           <Property Name="IdQuestion" Type="Int32" Nullable="false" />
           <Property Name="IdTest" Type="Int32" Nullable="false" />
-          <Property Name="QuestionNum" Type="Int32" />
           <Property Name="Content" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Answer" Relationship="Self.FK_Answer_Questions" FromRole="Questions" ToRole="Answer" />
           <NavigationProperty Name="Tests" Relationship="Self.FK_Questions_Tests" FromRole="Questions" ToRole="Tests" />
+          <Property Name="Answer" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Tests">
           <Key>
@@ -146,18 +108,6 @@
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Tests" Relationship="Self.FK_Tests_Users" FromRole="Users" ToRole="Tests" />
         </EntityType>
-        <Association Name="FK_Answer_Questions">
-          <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
-          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Questions">
-              <PropertyRef Name="IdQuestion" />
-            </Principal>
-            <Dependent Role="Answer">
-              <PropertyRef Name="IdQuestion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Questions_Tests">
           <End Role="Tests" Type="Self.Tests" Multiplicity="1" />
           <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
@@ -183,14 +133,9 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="MyTestsDataBaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Answer" EntityType="Self.Answer" />
           <EntitySet Name="Questions" EntityType="Self.Questions" />
           <EntitySet Name="Tests" EntityType="Self.Tests" />
           <EntitySet Name="Users" EntityType="Self.Users" />
-          <AssociationSet Name="FK_Answer_Questions" Association="Self.FK_Answer_Questions">
-            <End Role="Questions" EntitySet="Questions" />
-            <End Role="Answer" EntitySet="Answer" />
-          </AssociationSet>
           <AssociationSet Name="FK_Questions_Tests" Association="Self.FK_Questions_Tests">
             <End Role="Tests" EntitySet="Tests" />
             <End Role="Questions" EntitySet="Questions" />
@@ -206,22 +151,12 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище MyTestsDataBaseModelContainer" CdmEntityContainer="MyTestsDataBaseEntities">
-          <EntitySetMapping Name="Answer">
-            <EntityTypeMapping TypeName="MyTestsDataBaseModel.Answer">
-              <MappingFragment StoreEntitySet="Answer">
-                <ScalarProperty Name="IdAnswer" ColumnName="IdAnswer" />
-                <ScalarProperty Name="IdQuestion" ColumnName="IdQuestion" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="isTrue" ColumnName="isTrue" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="MyTestsDataBaseModel.Questions">
               <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
                 <ScalarProperty Name="IdQuestion" ColumnName="IdQuestion" />
                 <ScalarProperty Name="IdTest" ColumnName="IdTest" />
-                <ScalarProperty Name="QuestionNum" ColumnName="QuestionNum" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
               </MappingFragment>
             </EntityTypeMapping>

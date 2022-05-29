@@ -15,14 +15,21 @@ using System.Windows.Shapes;
 
 namespace MyTests.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для TestPage.xaml
-    /// </summary>
     public partial class TestPage : Page
     {
-        public TestPage()
+        int testId;
+        Tests test;
+        public TestPage(int id)
         {
             InitializeComponent();
+            testId = cnt.db.Tests.Where(item => item.IdTest == id).Select(item => item.IdTest).FirstOrDefault();
+            test = cnt.db.Tests.Where(item => item.IdTest == id).FirstOrDefault();
+            LoadingQuestions();
+        }
+        void LoadingQuestions()
+        {
+            TestsListBox.Items.Clear();
+            TestsListBox.ItemsSource = cnt.db.Questions.Where(item=>item.IdTest == testId).ToList(); ;
         }
     }
 }

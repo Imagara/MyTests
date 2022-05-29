@@ -14,19 +14,11 @@ namespace MyTests
     
     public partial class Questions
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Questions()
-        {
-            this.Answer = new HashSet<Answer>();
-        }
-    
         public int IdQuestion { get; set; }
         public int IdTest { get; set; }
-        public Nullable<int> QuestionNum { get; set; }
         public string Content { get; set; }
+        public string Answer { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Answer> Answer { get; set; }
         public virtual Tests Tests { get; set; }
     }
 }

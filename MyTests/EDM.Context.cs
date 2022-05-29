@@ -25,7 +25,6 @@ namespace MyTests
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Answer> Answer { get; set; }
         public virtual DbSet<Questions> Questions { get; set; }
         public virtual DbSet<Tests> Tests { get; set; }
         public virtual DbSet<Users> Users { get; set; }
