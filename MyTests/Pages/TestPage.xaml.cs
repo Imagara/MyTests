@@ -18,12 +18,13 @@ namespace MyTests.Pages
     public partial class TestPage : Page
     {
         int testId;
-        Tests test;
         public TestPage(int id)
         {
             InitializeComponent();
             testId = cnt.db.Tests.Where(item => item.IdTest == id).Select(item => item.IdTest).FirstOrDefault();
-            test = cnt.db.Tests.Where(item => item.IdTest == id).FirstOrDefault();
+            Tests test = cnt.db.Tests.Where(item => item.IdTest == id).FirstOrDefault();
+            TestName.Content = test.Name;
+            AuthorName.Content = test.Users.Login;
             LoadingQuestions();
         }
         void LoadingQuestions()

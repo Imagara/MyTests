@@ -10,5 +10,7 @@ namespace MyTests
     {
         public static int userId = 1; //{ get; set; }
         public static int openedTest { get; set; }
+        public static int points = 0;
+        public static int question = 1;
     }
 }

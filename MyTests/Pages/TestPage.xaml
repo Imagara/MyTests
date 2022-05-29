@@ -48,17 +48,10 @@
                             Height="50"
                             CornerRadius="10"
                             Background="{StaticResource color2}">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Width="35"
-                               Height="35"
-                               Margin="5"
-                               HorizontalAlignment="Left"
-                               Source="/MyTests;component/Resources/approval.png">
-                            </Image>
-                            <StackPanel>
-                                <Label Content="{Binding Content}"/>
-                                <TextBox Text="Ответ:"/>
-                            </StackPanel>
+                        <StackPanel>
+                            <Label Content="{Binding Content}"/>
+                            <TextBox Name="Testing"
+                                     Text="Ответ:"/>
                         </StackPanel>
                     </Border>
                 </DataTemplate>

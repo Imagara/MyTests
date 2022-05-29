@@ -50,7 +50,10 @@ namespace MyTests.Pages
             try
             {
                 if (((Tests)TestsListBox.SelectedItem) != null)
-                NavigationService.Navigate(new Pages.TestPage(((Tests)TestsListBox.SelectedItem).IdTest));
+                {
+                    NavigationService.Navigate(new Pages.TestPage(((Tests)TestsListBox.SelectedItem).IdTest));
+                    Session.openedTest = ((Tests)TestsListBox.SelectedItem).IdTest;
+                }
             }
             catch
             {
