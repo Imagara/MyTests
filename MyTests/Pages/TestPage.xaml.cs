@@ -8,10 +8,12 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Globalization;
 
 namespace MyTests.Pages
 {
@@ -30,7 +32,23 @@ namespace MyTests.Pages
         void LoadingQuestions()
         {
             TestsListBox.Items.Clear();
-            TestsListBox.ItemsSource = cnt.db.Questions.Where(item=>item.IdTest == testId).ToList(); ;
+            TestsListBox.ItemsSource = cnt.db.Questions.Where(item=>item.IdTest == testId).ToList();
+        }
+
+        private void TestsListBox_Selected(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                if (((Questions)TestsListBox.SelectedItem) != null)
+                {
+                    MessageBox.Show(((Questions)TestsListBox.SelectedItem).IdQuestion.ToString());
+                    MessageBox.Show($"{(ListBox)TestsListBox.FindName("Testing")}");
+                }
+            }
+            catch
+            {
+                new ErrorWindow("Ошибка открытия теста.").ShowDialog();
+            }
         }
     }
 }

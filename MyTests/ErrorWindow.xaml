@@ -12,21 +12,24 @@
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None" 
         ResizeMode="NoResize">
-    <Grid Background="#FF2D2D2D">
-        <TextBlock Name="ErrorLabel" 
+    <Border Background="#FF2D2D2D"
+            MouseDown="Border_MouseDown">
+        <StackPanel>
+            <TextBlock Name="ErrorLabel" 
                Text="Ошибка." 
                TextWrapping="Wrap"
                HorizontalAlignment="Center" 
                Margin="19,10,19,0" 
                VerticalAlignment="Top" 
                Width="262">
-        </TextBlock>
-        <Button Content="Закрыть" 
+            </TextBlock>
+            <Button Content="Закрыть" 
                 VerticalAlignment="Bottom" 
                 HorizontalAlignment="Center" 
                 Height="30" 
                 Width="130" 
                 Margin="0,0,0,15" 
                 Click="BackClick"/>
-    </Grid>
+        </StackPanel>
+    </Border>
 </Window>

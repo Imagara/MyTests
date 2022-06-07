@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace MyTests
 {
@@ -12,6 +13,12 @@ namespace MyTests
         private void BackClick(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
     }
 }

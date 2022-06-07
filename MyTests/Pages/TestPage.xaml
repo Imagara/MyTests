@@ -44,10 +44,11 @@
             <ScrollViewer VerticalScrollBarVisibility="Visible"/>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border Width="640"
+                    <Border Width="{Binding Path=ActualWidth, ElementName=TestsListBox}"
                             Height="50"
                             CornerRadius="10"
-                            Background="{StaticResource color2}">
+                            Background="{StaticResource color2}"
+                            MouseDown="TestsListBox_Selected">
                         <StackPanel>
                             <Label Content="{Binding Content}"/>
                             <TextBox Name="Testing"
