@@ -41,13 +41,13 @@ namespace MyTests.Pages
         }
         private void TestsLoading()
         {
-            foreach (Tests test in cnt.db.Tests.Where(item => item.IdUser == Session.userId).ToList())
+            foreach (Tests test in cnt.db.Tests.Where(item => item.IdUser == Session.UserId).ToList())
             {
                 try
                 {
                     BitmapImage img = test.Image == null ?
                         new BitmapImage(new Uri("../Resources/StandartProfile.png", UriKind.RelativeOrAbsolute)) :
-                        ImagesManip.NewImage(cnt.db.Users.Where(item => item.IdUser == Session.userId).FirstOrDefault());
+                        ImagesManip.NewImage(cnt.db.Users.Where(item => item.IdUser == Session.UserId).FirstOrDefault());
                     AddTest(test.Name, img, cnt.db.Questions.Where(item => item.IdTest == test.IdTest).Count());
                 }
                 catch (Exception ex)

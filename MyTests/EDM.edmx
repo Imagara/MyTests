@@ -4,74 +4,74 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище MyTestsDataBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Questions">
-          <Key>
-            <PropertyRef Name="IdQuestion" />
-          </Key>
-          <Property Name="IdQuestion" Type="int" Nullable="false" />
-          <Property Name="IdTest" Type="int" Nullable="false" />
-          <Property Name="Content" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="Answer" Type="nvarchar" MaxLength="150" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Tests">
-          <Key>
-            <PropertyRef Name="IdTest" />
-          </Key>
-          <Property Name="IdTest" Type="int" Nullable="false" />
-          <Property Name="IdUser" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="Image" Type="varbinary(max)" />
-        </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="IdUser" />
-          </Key>
-          <Property Name="IdUser" Type="int" Nullable="false" />
-          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Info" Type="nvarchar" MaxLength="50" />
-          <Property Name="Image" Type="varbinary(max)" />
-        </EntityType>
-        <Association Name="FK_Questions_Tests">
-          <End Role="Tests" Type="Self.Tests" Multiplicity="1" />
-          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tests">
-              <PropertyRef Name="IdTest" />
-            </Principal>
-            <Dependent Role="Questions">
-              <PropertyRef Name="IdTest" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tests_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Tests" Type="Self.Tests" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="IdUser" />
-            </Principal>
-            <Dependent Role="Tests">
-              <PropertyRef Name="IdUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="Хранилище MyTestsDataBaseModelContainer">
-          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tests" EntityType="Self.Tests" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Questions_Tests" Association="Self.FK_Questions_Tests">
-            <End Role="Tests" EntitySet="Tests" />
-            <End Role="Questions" EntitySet="Questions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tests_Users" Association="Self.FK_Tests_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Tests" EntitySet="Tests" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="MyTestsDataBaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="MyTestsDataBaseModelStoreContainer">
+    <EntitySet Name="Questions" EntityType="MyTestsDataBaseModel.Store.Questions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tests" EntityType="MyTestsDataBaseModel.Store.Tests" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="MyTestsDataBaseModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Questions_Tests" Association="MyTestsDataBaseModel.Store.FK_Questions_Tests">
+      <End Role="Tests" EntitySet="Tests" />
+      <End Role="Questions" EntitySet="Questions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tests_Users" Association="MyTestsDataBaseModel.Store.FK_Tests_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Tests" EntitySet="Tests" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Questions">
+    <Key>
+      <PropertyRef Name="IdQuestion" />
+    </Key>
+    <Property Name="IdQuestion" Type="int" Nullable="false" />
+    <Property Name="IdTest" Type="int" Nullable="false" />
+    <Property Name="Content" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Answer" Type="nvarchar" Nullable="false" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Tests">
+    <Key>
+      <PropertyRef Name="IdTest" />
+    </Key>
+    <Property Name="IdTest" Type="int" Nullable="false" />
+    <Property Name="IdUser" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Image" Type="varbinary(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="IdUser" />
+    </Key>
+    <Property Name="IdUser" Type="int" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Info" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Image" Type="varbinary(max)" Nullable="true" />
+  </EntityType>
+  <Association Name="FK_Questions_Tests">
+    <End Role="Tests" Type="MyTestsDataBaseModel.Store.Tests" Multiplicity="1" />
+    <End Role="Questions" Type="MyTestsDataBaseModel.Store.Questions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tests">
+        <PropertyRef Name="IdTest" />
+      </Principal>
+      <Dependent Role="Questions">
+        <PropertyRef Name="IdTest" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tests_Users">
+    <End Role="Users" Type="MyTestsDataBaseModel.Store.Users" Multiplicity="1" />
+    <End Role="Tests" Type="MyTestsDataBaseModel.Store.Tests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="Tests">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MyTestsDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -149,43 +149,42 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище MyTestsDataBaseModelContainer" CdmEntityContainer="MyTestsDataBaseEntities">
-          <EntitySetMapping Name="Questions">
-            <EntityTypeMapping TypeName="MyTestsDataBaseModel.Questions">
-              <MappingFragment StoreEntitySet="Questions">
-                <ScalarProperty Name="Answer" ColumnName="Answer" />
-                <ScalarProperty Name="IdQuestion" ColumnName="IdQuestion" />
-                <ScalarProperty Name="IdTest" ColumnName="IdTest" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tests">
-            <EntityTypeMapping TypeName="MyTestsDataBaseModel.Tests">
-              <MappingFragment StoreEntitySet="Tests">
-                <ScalarProperty Name="IdTest" ColumnName="IdTest" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="MyTestsDataBaseModel.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Info" ColumnName="Info" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MyTestsDataBaseModelStoreContainer" CdmEntityContainer="MyTestsDataBaseEntities">
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="IsTypeOf(MyTestsDataBaseModel.Questions)">
+        <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="IdQuestion" ColumnName="IdQuestion" />
+          <ScalarProperty Name="IdTest" ColumnName="IdTest" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tests">
+      <EntityTypeMapping TypeName="IsTypeOf(MyTestsDataBaseModel.Tests)">
+        <MappingFragment StoreEntitySet="Tests">
+          <ScalarProperty Name="IdTest" ColumnName="IdTest" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(MyTestsDataBaseModel.Users)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Info" ColumnName="Info" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -199,7 +198,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
       </DesignerInfoPropertySet>
     </Options>

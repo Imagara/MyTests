@@ -51,8 +51,12 @@ namespace MyTests.Pages
             {
                 if (((Tests)TestsListBox.SelectedItem) != null)
                 {
-                    NavigationService.Navigate(new Pages.TestPage(((Tests)TestsListBox.SelectedItem).IdTest));
-                    Session.openedTest = ((Tests)TestsListBox.SelectedItem).IdTest;
+                    Session.OpenedTest = cnt.db.Tests.Where(item => item.IdTest == ((Tests)TestsListBox.SelectedItem).IdTest).FirstOrDefault();
+                    NavigationService.Navigate(new Pages.TestPage(Session.OpenedTest.IdTest));
+                    Session.Points = 0;
+                    Session.CurQuestion = 0;
+                    Session.Quest.Answer = cnt.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Answer).ToArray();
+                    Session.Quest.Content = cnt.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Content).ToArray();
                 }
             }
             catch
@@ -62,3 +66,59 @@ namespace MyTests.Pages
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//拯救我们被关在地下室

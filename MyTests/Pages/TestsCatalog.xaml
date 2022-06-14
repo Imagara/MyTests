@@ -56,6 +56,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Width="{Binding Path=ActualWidth, ElementName=TestsListBox}"
+                            Margin="-10,0,0,0"
                             Height="45"
                             CornerRadius="10"
                             Background="{StaticResource color2}"
