@@ -42,7 +42,6 @@ namespace MyTests.Pages
                 if (((Questions)TestsListBox.SelectedItem) != null)
                 {
                     MessageBox.Show(((Questions)TestsListBox.SelectedItem).IdQuestion.ToString());
-                    MessageBox.Show($"{(ListBox)TestsListBox.FindName("Testing")}");
                 }
             }
             catch

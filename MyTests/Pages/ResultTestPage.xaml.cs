@@ -23,9 +23,18 @@ namespace MyTests.Pages
             ResultTB.Text = $"{Session.Points}/{Session.OpenedTest.Questions.Count}";
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AnswersButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pages.TestsCatalog());
+        }
+        private void ProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pages.ProfilePage( cnt.db.Users.Where(item => item.IdUser == Session.OpenedTest.IdUser).FirstOrDefault()));
         }
     }
 }

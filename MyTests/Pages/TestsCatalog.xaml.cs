@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace MyTests.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для TestsCatalog.xaml
-    /// </summary>
     public partial class TestsCatalog : Page
     {
         public TestsCatalog()
@@ -32,12 +29,12 @@ namespace MyTests.Pages
         }
         void LoadingTests()
         {
+            TestsListBox.Items.Clear();
             var list = cnt.db.Tests.ToList();
             if (TestNameBox.Text != "Название теста")
                 list = list.Where(item => item.Name == TestNameBox.Text).ToList();
             if (AuthorTestBox.Text != "Автор")
                 list = list.Where(item => item.Users.Login == AuthorTestBox.Text).ToList();
-            TestsListBox.Items.Clear();
             TestsListBox.ItemsSource = list;
         }
 
@@ -52,11 +49,12 @@ namespace MyTests.Pages
                 if (((Tests)TestsListBox.SelectedItem) != null)
                 {
                     Session.OpenedTest = cnt.db.Tests.Where(item => item.IdTest == ((Tests)TestsListBox.SelectedItem).IdTest).FirstOrDefault();
-                    NavigationService.Navigate(new Pages.TestPage(Session.OpenedTest.IdTest));
                     Session.Points = 0;
                     Session.CurQuestion = 0;
-                    Session.Quest.Answer = cnt.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Answer).ToArray();
                     Session.Quest.Content = cnt.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Content).ToArray();
+                    Session.Quest.Answer = cnt.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Answer).ToArray();
+
+                    NavigationService.Navigate(new Pages.CurTestPage());
                 }
             }
             catch

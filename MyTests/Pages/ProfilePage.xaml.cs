@@ -17,48 +17,37 @@ namespace MyTests.Pages
 {
     public partial class ProfilePage : Page
     {
-        public ProfilePage()
+        public static Users user;
+        public ProfilePage(Users _user)
         {
             InitializeComponent();
+            user = _user;
+            UserName.Content = user.Login;
+            if (user.Image == null)
+                ProfileImage.Source = new BitmapImage(new Uri("../Resources/StandartImage.png", UriKind.RelativeOrAbsolute));
+            else
+                ProfileImage.Source = ImagesManip.NewImage(user);
             TestsLoading();
             //EmailBox.Content = cnt.db.Dispatcher.Where(item => item.IdDispatcher == profile.DispatcherId).Select(item => item.Email).FirstOrDefault();
             //PhoneNumBox.Content = "+7(" + phone.Substring(0, 3) + ")" + phone.Substring(3, 3) + "-" + phone.Substring(6, 2) + "-" + phone.Substring(8, 2);
         }
-        private void EditImageButton_Click(object sender, RoutedEventArgs e)
+        private void EditImage_Click(object sender, RoutedEventArgs e)
         {
-            //OpenFileDialog ofd = new OpenFileDialog();
-            //ofd.DefaultExt = ".png";
-            //ofd.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg";
-            //Nullable<bool> result = ofd.ShowDialog();
-            //if (result == true)
-            //{
-            //    string filename = ofd.FileName;
-            //    ProfileImg.Source = new BitmapImage(new Uri(filename));
-            //    Dispatcher dispatcher = cnt.db.Dispatcher.Where(item => item.IdDispatcher == profile.DispatcherId).FirstOrDefault();
-            //    dispatcher.ProfileImgSource = filename;
-            //    cnt.db.SaveChanges();
-            //}
-        }
-        private void TestsLoading()
-        {
-            foreach (Tests test in cnt.db.Tests.Where(item => item.IdUser == Session.UserId).ToList())
+            if(user == Session.User)
             {
-                try
+                BitmapImage image = ImagesManip.SelectImage();
+                if (image != null)
                 {
-                    BitmapImage img = test.Image == null ?
-                        new BitmapImage(new Uri("../Resources/StandartProfile.png", UriKind.RelativeOrAbsolute)) :
-                        ImagesManip.NewImage(cnt.db.Users.Where(item => item.IdUser == Session.UserId).FirstOrDefault());
-                    AddTest(test.Name, img, cnt.db.Questions.Where(item => item.IdTest == test.IdTest).Count());
-                }
-                catch (Exception ex)
-                {
-                    new ErrorWindow(ex.ToString()).ShowDialog();
+                    ProfileImage.Source = image;
+                    Session.User.Image = ImagesManip.BitmapSourceToByteArray((BitmapSource)ProfileImage.Source);
+                    cnt.db.SaveChanges();
                 }
             }
         }
-        private void AddTest(string name, BitmapImage image, int questCount)
+        private void TestsLoading()
         {
-            //MessageBox.Show($"{name}, quests:, {questCount}");
+            TestsListBox.Items.Clear();
+            TestsListBox.ItemsSource = cnt.db.Tests.Where(item => item.IdUser == user.IdUser).ToList();
         }
 
         private void SaveButton(object sender, RoutedEventArgs e)
@@ -70,11 +59,25 @@ namespace MyTests.Pages
         {
 
         }
-    }
-    class Test
-    {
-        public string Name { get; set; }
-        public Image Image { get; set; }
-        public int QuestionsCount { get; set; }
+        private void TestsListBox_Selected(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (((Tests)TestsListBox.SelectedItem) != null)
+                {
+                    Session.OpenedTest = cnt.db.Tests.Where(item => item.IdTest == ((Tests)TestsListBox.SelectedItem).IdTest).FirstOrDefault();
+                    Session.Points = 0;
+                    Session.CurQuestion = 0;
+                    Session.Quest.Content = cnt.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Content).ToArray();
+                    Session.Quest.Answer = cnt.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Answer).ToArray();
+
+                    NavigationService.Navigate(new Pages.CurTestPage());
+                }
+            }
+            catch
+            {
+                new ErrorWindow("Ошибка открытия теста.").ShowDialog();
+            }
+        }
     }
 }

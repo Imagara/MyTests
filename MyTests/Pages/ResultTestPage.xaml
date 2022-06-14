@@ -38,14 +38,16 @@
                     Height="40">
             <Button Content="Посмотреть мои ответы"
                     Width="150"
-                    Margin="10,0,0,0"
-                    Click="Button_Click"/>
-            <Button 
-                    Content="Выход"
+                    Margin="0,0,10,0"
+                    Click="AnswersButton_Click"/>
+            <Button Content="Профиль автора"
+                    Width="150"
+                    Margin="10,0,10,0"
+                    Click="ProfileButton_Click"/>
+            <Button Content="К тестам"
                     Width="150"
                     Margin="10,0,0,0"
-                    Click="NextButton_Click"/>
-
+                    Click="ExitButton_Click"/>
         </StackPanel>
     </Grid>
 </Page>

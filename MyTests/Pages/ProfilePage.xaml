@@ -24,11 +24,24 @@
                 <ColumnDefinition Width="143*"/>
             </Grid.ColumnDefinitions>
 
-            <Image Name="PartImage"
-                   Grid.Column="0"
-                   Margin="10"
-                   Source="/MyTests;component/Resources/StandartImage.png">
-            </Image>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="31"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Name="UserName"
+                       FontSize="16"
+                       Content="Имя"
+                       HorizontalAlignment="Center">
+                </Label>
+                <Image Name="ProfileImage"
+                   Grid.Row="1"
+                       Margin="10,0,10,10"
+                   Source="/MyTests;component/Resources/StandartImage.png"
+                   MouseDown="EditImage_Click">
+                </Image>
+            </Grid>
+
 
             <Grid Grid.Column="1"
                   Margin="10"
@@ -46,22 +59,57 @@
                          MinWidth="50">
                 </TextBox>
 
-                <Label Grid.Row="1"
-                       Content="Инфо: "
-                       FontSize="22">
-                </Label>
+                <TextBox Grid.Row="1"
+                       Text="Инфо: "
+                       FontSize="22"
+                         Background="{x:Null}"
+                         BorderBrush="{x:Null}">
+                </TextBox>
             </Grid>
         </Grid>
 
-        <ListBox Grid.Row="1"
-                 Background="{StaticResource color3}"
-                 BorderBrush="{StaticResource color3}">
+        <ListBox Name="TestsListBox"
+                 Grid.Row="1"
+                 Margin="10,0,10,0"
+                 Background="{StaticResource color1}"
+                 BorderBrush="{x:Null}">
+            <ScrollViewer VerticalScrollBarVisibility="Visible"/>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Width="{Binding Path=ActualWidth, ElementName=TestsListBox}"
+                            Margin="-10,0,0,0"
+                            Height="45"
+                            CornerRadius="10"
+                            Background="{StaticResource color2}"
+                            MouseDown="TestsListBox_Selected">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="35"
+                               Height="35"
+                               Margin="5"
+                               HorizontalAlignment="Left"
+                               Source="/MyTests;component/Resources/approval.png">
+                            </Image>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{Binding Name}"/>
+                                    <Label Content="{Binding Users.Login}"/>
+                                </StackPanel>
+                                <TextBlock Margin="0,-7,0,0">
+                                    <Run Text="Вопросов: " Foreground="White"/>
+                                    <Run Text="{Binding Questions.Count, Mode=OneTime}" />
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
         <Grid Grid.Row="2">
             <StackPanel Orientation="Horizontal" 
                         HorizontalAlignment="Center">
-                <Button Width="120"
+                <Button Visibility="Collapsed"
+                        Width="120"
                         Margin="5,0,5,0"
                         Content="Назад"
                         FontSize="20"

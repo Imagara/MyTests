@@ -16,11 +16,11 @@
             <RowDefinition Height="89*"/>
         </Grid.RowDefinitions>
         <TextBlock Name="QuestionBox"
-                   Text="{Binding Content}"
+                   Text="Тут типа вопрос"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    FontSize="40"
-                   TextWrapping="Wrap" Height="54" Width="0">
+                   TextWrapping="Wrap">
         </TextBlock>
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal"

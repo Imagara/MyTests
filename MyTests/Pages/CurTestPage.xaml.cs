@@ -25,11 +25,15 @@ namespace MyTests.Pages
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            if (AnswerBox.Text == Session.Quest.Answer[Session.CurQuestion])
+            if (AnswerBox.Text.ToLower().Trim() == Session.Quest.Answer[Session.CurQuestion].ToLower().Trim())
                 Session.Points++;
-            //if(Session.CurQuestion-1 == Session.Quest.Answer.Length)
-                
-
+            if(Session.CurQuestion >= Session.OpenedTest.Questions.Count()-1)
+                NavigationService.Navigate(new Pages.ResultTestPage());
+            else
+            {
+                Session.CurQuestion++; 
+                NavigationService.Navigate(new Pages.CurTestPage());
+            }
         }
     }
 }

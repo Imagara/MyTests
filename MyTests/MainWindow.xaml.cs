@@ -23,7 +23,7 @@ namespace MyTests
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Content = new Pages.ProfilePage();
+            MainFrame.Content = new Pages.TestsCatalog();
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -52,7 +52,7 @@ namespace MyTests
 
         private void ProfileClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Pages.ProfilePage();
+            MainFrame.Content = new Pages.ProfilePage(Session.User);
         }
 
         private void TestsCatalogClick(object sender, RoutedEventArgs e)

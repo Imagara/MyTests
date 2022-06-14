@@ -9,8 +9,8 @@
       d:DesignWidth="800">
     <Grid Background="{StaticResource color1}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="32*"/>
-            <RowDefinition Height="193*"/>
+            <RowDefinition Height="64"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Border CornerRadius="15" 
@@ -51,7 +51,7 @@
         <ListBox Name="TestsListBox"
                  Grid.Row="1"
                  Background="{StaticResource color1}"
-                 BorderBrush="{Binding TestsListBox}">
+                 BorderBrush="{x:Null}">
             <ScrollViewer VerticalScrollBarVisibility="Visible"/>
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -73,9 +73,10 @@
                                     <Label Content="{Binding Name}"/>
                                     <Label Content="{Binding Users.Login}"/>
                                 </StackPanel>
-                                <Label Content="Вопросов: 15"
-                                   Margin="0,-7,0,0">
-                                </Label>
+                                <TextBlock Margin="0,-7,0,0">
+                                    <Run Text="Вопросов: " Foreground="White"/>
+                                    <Run Text="{Binding Questions.Count, Mode=OneTime}" />
+                                </TextBlock>
                             </StackPanel>
                         </StackPanel>
                     </Border>
