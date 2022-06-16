@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:MyTests"
         mc:Ignorable="d"
         Title="RegAuth" Height="475" Width="475">
-    <Grid>
+    <Grid Background="#2F3136">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="25*"/>

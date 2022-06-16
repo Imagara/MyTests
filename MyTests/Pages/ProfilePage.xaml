@@ -53,7 +53,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0"
                             Orientation="Horizontal">
-                    <TextBox Text="Email: "
+                    <Label Content="Email: "
                              Background="{x:Null}"
                              BorderBrush="{x:Null}"
                              FontSize="22"/>
@@ -62,17 +62,18 @@
                          FontSize="22"
                          Background="{x:Null}"
                          BorderBrush="{x:Null}"
-                         Width="{Binding Path=ActualWidth, ElementName=UserInfoGrid}">
+                         Width="{Binding Path=ActualWidth, ElementName=UserInfoGrid}"
+                              >
                     </TextBox>
                 </StackPanel>
 
                 <StackPanel Grid.Row="1"
                             Orientation="Horizontal">
-                    <TextBox Text="Инфо: "
+                    <Label Content="Инфо: "
                          FontSize="22"
                          Background="{x:Null}"
                          BorderBrush="{x:Null}">
-                    </TextBox>
+                    </Label>
                     <TextBox Name="InfoBox"
                          Text=""
                          FontSize="22"

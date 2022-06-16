@@ -8,7 +8,7 @@ namespace MyTests
 {
     class Session
     {
-        public static Users User = cnt.db.Users.Where(item => item.IdUser == 1).FirstOrDefault(); //{ get; set; }
+        public static Users User { get; set; }
         public static Tests OpenedTest { get; set; }
         public static int Points = 0;
         public static int CurQuestion = 0;

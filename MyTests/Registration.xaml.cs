@@ -37,16 +37,17 @@ namespace MyTests
                     {
                         Users newUser = new Users()
                         {
-                            IdUsers = Connection.db.Users.Select(p => p.IdUsers).DefaultIfEmpty(0).Max() + 1,
+                            IdUser = cnt.db.Users.Select(p => p.IdUser).DefaultIfEmpty(0).Max() + 1,
                             Login = Login.Text,
                             Password = Password.Text,
                             Email = Email.Text,
                             Info = Info.Text
                         };
-                        Connection.db.Users.Add(newUser);
-                        Connection.db.SaveChanges();
+                        cnt.db.Users.Add(newUser);
+                        cnt.db.SaveChanges();
                         MessageBox.Show("Вы успешно зарегистрировались");
-                        Session.UserId = Connection.db.Users.Select(item => item.IdUsers).Max();
+                        Session.User = cnt.db.Users.Where(item => item.Login == Login.Text && item.Password == Password.Text).FirstOrDefault();
+
                         MainWindow RegAuth = new MainWindow();
                         RegAuth.Show();
                     }
@@ -65,7 +66,7 @@ namespace MyTests
 
         public bool RegistrLogin(string Login)
         {
-            //if (Connection.db.Users.Select(item => item.Login).Contains(Login))
+            //if (cnt.db.Users.Select(item => item.Login).Contains(Login))
             //    return true;
             //else
                 return false;

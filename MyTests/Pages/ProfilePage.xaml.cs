@@ -21,6 +21,11 @@ namespace MyTests.Pages
                 ProfileImage.Source = ImagesManip.NewImage(user);
             EmailBox.Text = user.Email;
             InfoBox.Text = user.Info;
+            if (user != Session.User)
+            {
+                EmailBox.IsEnabled = false;
+                InfoBox.IsEnabled = false;
+            }
             TestsLoading();
         }
         private void EditImage_Click(object sender, RoutedEventArgs e)

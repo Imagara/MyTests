@@ -25,8 +25,8 @@ namespace MyTests
         public string Content { get; set; }
         public string Answer { get; set; }
     
-        public virtual Tests Tests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Answers> Answers { get; set; }
+        public virtual Tests Tests { get; set; }
     }
 }

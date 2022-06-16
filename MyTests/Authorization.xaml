@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Height="475" Width="475">
-    <Grid>
+    <Grid Background="#2F3136">
         <Button Content="Войти" Margin="0,250,15,0" VerticalAlignment="Top" Width="93" Click="Auth" Height="26" FontSize="18"/>
         <TextBox x:Name="Login" LostFocus="LostLogin" GotFocus="LoginFocus" Margin="0,150,15,0" TextWrapping="Wrap" Text ="Логин" VerticalAlignment="Top" Width="145" Height="25" FontSize="16" />
         <PasswordBox x:Name="Password" LostFocus="LostPassword" GotFocus="PasswordFocus" Margin="0,210,15,0" Password ="Password" VerticalAlignment="Top" Width="126"/>

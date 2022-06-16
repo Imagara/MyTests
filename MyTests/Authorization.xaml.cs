@@ -27,10 +27,17 @@ namespace MyTests
         {
             if (!emptiness(Login.Text, Password.Password))
                 MessageBox.Show("Поля не могут быть пустыми.");
-            else if (Connection.db.Users.Select(item => item.Login + item.Password).Contains(Login.Text + Password.Password))
+            else if (cnt.db.Users.Select(item => item.Login + item.Password).Contains(Login.Text + Password.Password))
             {
-                Session.UserId = Connection.db.Users.First(item => item.Login == Login.Text).IdUsers;
-                MessageBox.Show("КУКУ");
+                Session.User = cnt.db.Users.First(item => item.Login == Login.Text);
+                MainWindow RegAuth = new MainWindow();
+                RegAuth.Show();
+                var windows = Application.Current.Windows;
+                for (int i = windows.Count - 1; i >= 0; i--)
+                {
+                    if (windows[i].ToString() == "MyTests.RegAuth")
+                        windows[i].Close();
+                }
             }
             else
                 MessageBox.Show("Неверный логин или пароль");
