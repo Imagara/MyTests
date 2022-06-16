@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a3a420bb96024b0f95a0dd865890e046" Name="Diagram1" ZoomLevel="132">
+        <EntityTypeShape EntityType="MyTestsDataBaseModel.Questions" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyTestsDataBaseModel.Tests" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyTestsDataBaseModel.Users" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="MyTestsDataBaseModel.FK_Questions_Tests" ManuallyRouted="false" />
+        <AssociationConnector Association="MyTestsDataBaseModel.FK_Tests_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MyTestsDataBaseModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MyTestsDataBaseModel.Answers" Width="1.5" PointX="3.125" PointY="4" />
+        <AssociationConnector Association="MyTestsDataBaseModel.FK_Answers_Questions" />
+        <AssociationConnector Association="MyTestsDataBaseModel.FK_Answers_Users" ManuallyRouted="true" >
+          <ConnectorPoint PointX="1.5" PointY="3.5571907552083331" />
+          <ConnectorPoint PointX="1.5" PointY="4.4754490993496754" />
+          <ConnectorPoint PointX="3.125" PointY="4.4754490993496754" />
+        </AssociationConnector>
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
