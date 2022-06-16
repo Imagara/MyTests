@@ -34,7 +34,8 @@
             </Image>
             <Label Name="AuthorName"
                    Content="Автор"
-                   FontSize="25">
+                   FontSize="25"
+                   MouseDown="AuthorName_MouseDown">
             </Label>
         </StackPanel>
         <ListBox Name="TestsListBox"
@@ -47,12 +48,13 @@
                     <Border Width="{Binding Path=ActualWidth, ElementName=TestsListBox}"
                             Height="50"
                             CornerRadius="10"
-                            Background="{StaticResource color2}"
-                            MouseDown="TestsListBox_Selected">
+                            Background="{StaticResource color2}">
                         <StackPanel>
-                            <Label Content="{Binding Content}"/>
-                            <TextBox Name="Testing"
-                                     Text="Ответ:"/>
+                            <Label Content="{Binding Questions.Content}"/>
+                            <TextBlock>
+                                <Run Text="Ответ: " Foreground="LightGray"/>
+                                <Run Text="{Binding Answer}" Foreground="White"/>
+                            </TextBlock>
                         </StackPanel>
                     </Border>
                 </DataTemplate>

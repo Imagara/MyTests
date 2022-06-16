@@ -10,6 +10,14 @@
         <EntityTypeShape EntityType="MyTestsDataBaseModel.Users" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="MyTestsDataBaseModel.FK_Questions_Tests" ManuallyRouted="false" />
         <AssociationConnector Association="MyTestsDataBaseModel.FK_Tests_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MyTestsDataBaseModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MyTestsDataBaseModel.Answers" Width="1.5" PointX="3.125" PointY="4" />
+        <AssociationConnector Association="MyTestsDataBaseModel.FK_Answers_Questions" />
+        <AssociationConnector Association="MyTestsDataBaseModel.FK_Answers_Users" ManuallyRouted="true" >
+          <ConnectorPoint PointX="1.5" PointY="3.5571907552083331" />
+          <ConnectorPoint PointX="1.5" PointY="4.4754490993496754" />
+          <ConnectorPoint PointX="3.125" PointY="4.4754490993496754" />
+        </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

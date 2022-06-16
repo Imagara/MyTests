@@ -41,5 +41,18 @@ namespace MyTests
         {
             return cnt.db.Users.Select(item => item.Login).Contains(login);
         }
+        // Валидация электронной почты
+        public static bool IsValidEmail(string email)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(email, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"))
+                return true;
+            else
+                return false;
+        }
+        // Проверка на уникальность электронной почты
+        public static bool IsEmailAlreadyTaken(string Email)
+        {
+            return cnt.db.Users.Select(item => item.Email).Contains(Email);
+        }
     }
 }

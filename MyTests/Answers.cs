@@ -12,21 +12,14 @@ namespace MyTests
     using System;
     using System.Collections.Generic;
     
-    public partial class Questions
+    public partial class Answers
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Questions()
-        {
-            this.Answers = new HashSet<Answers>();
-        }
-    
+        public int IdUserAnswer { get; set; }
         public int IdQuestion { get; set; }
-        public int IdTest { get; set; }
-        public string Content { get; set; }
+        public int IdUser { get; set; }
         public string Answer { get; set; }
     
-        public virtual Tests Tests { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Answers> Answers { get; set; }
+        public virtual Questions Questions { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

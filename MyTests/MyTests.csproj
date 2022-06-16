@@ -64,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Answers.cs">
+      <DependentUpon>EDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="EDM.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -99,6 +102,9 @@
     </Compile>
     <Compile Include="Session.cs" />
     <Compile Include="Styles\Style.cs" />
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>EDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Tests.cs">
       <DependentUpon>EDM.tt</DependentUpon>
     </Compile>

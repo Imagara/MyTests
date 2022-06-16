@@ -43,28 +43,44 @@
             </Grid>
 
 
-            <Grid Grid.Column="1"
+            <Grid Name="UserInfoGrid"
+                  Grid.Column="1"
                   Margin="10"
                   Background="{StaticResource color3}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="49"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBox Grid.Row="0"
-                         Name="EmailBox"
-                         Text="Email"
+                <StackPanel Grid.Row="0"
+                            Orientation="Horizontal">
+                    <TextBox Text="Email: "
+                             Background="{x:Null}"
+                             BorderBrush="{x:Null}"
+                             FontSize="22"/>
+                    <TextBox Name="EmailBox"
+                         Text=" "
                          FontSize="22"
                          Background="{x:Null}"
                          BorderBrush="{x:Null}"
-                         MinWidth="50">
-                </TextBox>
+                         Width="{Binding Path=ActualWidth, ElementName=UserInfoGrid}">
+                    </TextBox>
+                </StackPanel>
 
-                <TextBox Grid.Row="1"
-                       Text="Инфо: "
-                       FontSize="22"
+                <StackPanel Grid.Row="1"
+                            Orientation="Horizontal">
+                    <TextBox Text="Инфо: "
+                         FontSize="22"
                          Background="{x:Null}"
                          BorderBrush="{x:Null}">
-                </TextBox>
+                    </TextBox>
+                    <TextBox Name="InfoBox"
+                         Text=""
+                         FontSize="22"
+                         Background="{x:Null}"
+                         BorderBrush="{x:Null}"
+                             Width="{Binding Path=ActualWidth, ElementName=UserInfoGrid}">
+                    </TextBox>
+                </StackPanel>
             </Grid>
         </Grid>
 
@@ -96,7 +112,7 @@
                                 </StackPanel>
                                 <TextBlock Margin="0,-7,0,0">
                                     <Run Text="Вопросов: " Foreground="White"/>
-                                    <Run Text="{Binding Questions.Count, Mode=OneTime}" />
+                                    <Run Text="{Binding Questions.Count, Mode=OneTime}"/>
                                 </TextBlock>
                             </StackPanel>
                         </StackPanel>
@@ -105,24 +121,12 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Grid Grid.Row="2">
-            <StackPanel Orientation="Horizontal" 
-                        HorizontalAlignment="Center">
-                <Button Visibility="Collapsed"
-                        Width="120"
-                        Margin="5,0,5,0"
-                        Content="Назад"
-                        FontSize="20"
-                        Click="BackButton">
-                </Button>
-                <Button Width="120"
-                        Margin="5,0,5,0"
-                        Content="Сохранить"
-                        FontSize="20"
-                        Click="SaveButton">
-                </Button>
-            </StackPanel>
-
-        </Grid>
+        <Button Grid.Row="2"
+                Width="120"
+                Margin="5,0,5,0"
+                Content="Сохранить"
+                FontSize="20"
+                Click="SaveButton">
+        </Button>
     </Grid>
 </Page>

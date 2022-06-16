@@ -4,74 +4,127 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MyTestsDataBaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="MyTestsDataBaseModelStoreContainer">
-    <EntitySet Name="Questions" EntityType="MyTestsDataBaseModel.Store.Questions" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Tests" EntityType="MyTestsDataBaseModel.Store.Tests" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Users" EntityType="MyTestsDataBaseModel.Store.Users" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_Questions_Tests" Association="MyTestsDataBaseModel.Store.FK_Questions_Tests">
-      <End Role="Tests" EntitySet="Tests" />
-      <End Role="Questions" EntitySet="Questions" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Tests_Users" Association="MyTestsDataBaseModel.Store.FK_Tests_Users">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Tests" EntitySet="Tests" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Questions">
-    <Key>
-      <PropertyRef Name="IdQuestion" />
-    </Key>
-    <Property Name="IdQuestion" Type="int" Nullable="false" />
-    <Property Name="IdTest" Type="int" Nullable="false" />
-    <Property Name="Content" Type="nvarchar" Nullable="false" MaxLength="150" />
-    <Property Name="Answer" Type="nvarchar" Nullable="false" MaxLength="150" />
-  </EntityType>
-  <EntityType Name="Tests">
-    <Key>
-      <PropertyRef Name="IdTest" />
-    </Key>
-    <Property Name="IdTest" Type="int" Nullable="false" />
-    <Property Name="IdUser" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="150" />
-    <Property Name="Image" Type="varbinary(max)" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Users">
-    <Key>
-      <PropertyRef Name="IdUser" />
-    </Key>
-    <Property Name="IdUser" Type="int" Nullable="false" />
-    <Property Name="Login" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Info" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="Image" Type="varbinary(max)" Nullable="true" />
-  </EntityType>
-  <Association Name="FK_Questions_Tests">
-    <End Role="Tests" Type="MyTestsDataBaseModel.Store.Tests" Multiplicity="1" />
-    <End Role="Questions" Type="MyTestsDataBaseModel.Store.Questions" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tests">
-        <PropertyRef Name="IdTest" />
-      </Principal>
-      <Dependent Role="Questions">
-        <PropertyRef Name="IdTest" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Tests_Users">
-    <End Role="Users" Type="MyTestsDataBaseModel.Store.Users" Multiplicity="1" />
-    <End Role="Tests" Type="MyTestsDataBaseModel.Store.Tests" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="IdUser" />
-      </Principal>
-      <Dependent Role="Tests">
-        <PropertyRef Name="IdUser" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="MyTestsDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Answers">
+          <Key>
+            <PropertyRef Name="IdUserAnswer" />
+          </Key>
+          <Property Name="IdUserAnswer" Type="int" Nullable="false" />
+          <Property Name="IdQuestion" Type="int" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="Answer" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="IdQuestion" />
+          </Key>
+          <Property Name="IdQuestion" Type="int" Nullable="false" />
+          <Property Name="IdTest" Type="int" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Answer" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tests">
+          <Key>
+            <PropertyRef Name="IdTest" />
+          </Key>
+          <Property Name="IdTest" Type="int" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Image" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Info" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Answers_Questions">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
+          <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="IdQuestion" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="IdQuestion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answers_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_Tests">
+          <End Role="Tests" Type="Self.Tests" Multiplicity="1" />
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="IdTest" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="IdTest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tests_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Tests" Type="Self.Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Tests">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyTestsDataBaseModelStoreContainer">
+          <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tests" EntityType="Self.Tests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Answers_Questions" Association="Self.FK_Answers_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answers_Users" Association="Self.FK_Answers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_Tests" Association="Self.FK_Questions_Tests">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tests_Users" Association="Self.FK_Tests_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tests" EntitySet="Tests" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MyTestsDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -84,6 +137,7 @@
           <Property Name="Content" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Tests" Relationship="Self.FK_Questions_Tests" FromRole="Questions" ToRole="Tests" />
           <Property Name="Answer" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Answers" Relationship="MyTestsDataBaseModel.FK_Answers_Questions" FromRole="Questions" ToRole="Answers" />
         </EntityType>
         <EntityType Name="Tests">
           <Key>
@@ -107,6 +161,7 @@
           <Property Name="Info" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Tests" Relationship="Self.FK_Tests_Users" FromRole="Users" ToRole="Tests" />
+          <NavigationProperty Name="Answers" Relationship="MyTestsDataBaseModel.FK_Answers_Users" FromRole="Users" ToRole="Answers" />
         </EntityType>
         <Association Name="FK_Questions_Tests">
           <End Role="Tests" Type="Self.Tests" Multiplicity="1" />
@@ -144,7 +199,62 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Tests" EntitySet="Tests" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="MyTestsDataBaseModel.sysdiagrams" />
+          <EntitySet Name="Answers" EntityType="MyTestsDataBaseModel.Answers" />
+          <AssociationSet Name="FK_Answers_Questions" Association="MyTestsDataBaseModel.FK_Answers_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answers_Users" Association="MyTestsDataBaseModel.FK_Answers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Answers">
+          <Key>
+            <PropertyRef Name="IdUserAnswer" />
+          </Key>
+          <Property Name="IdUserAnswer" Type="Int32" Nullable="false" />
+          <Property Name="IdQuestion" Type="Int32" Nullable="false" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="Answer" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Questions" Relationship="MyTestsDataBaseModel.FK_Answers_Questions" FromRole="Answers" ToRole="Questions" />
+          <NavigationProperty Name="Users" Relationship="MyTestsDataBaseModel.FK_Answers_Users" FromRole="Answers" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_Answers_Questions">
+          <End Type="MyTestsDataBaseModel.Questions" Role="Questions" Multiplicity="1" />
+          <End Type="MyTestsDataBaseModel.Answers" Role="Answers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="IdQuestion" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="IdQuestion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answers_Users">
+          <End Type="MyTestsDataBaseModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="MyTestsDataBaseModel.Answers" Role="Answers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -183,6 +293,27 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MyTestsDataBaseModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="MyTestsDataBaseModel.Answers">
+              <MappingFragment StoreEntitySet="Answers">
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdQuestion" ColumnName="IdQuestion" />
+                <ScalarProperty Name="IdUserAnswer" ColumnName="IdUserAnswer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

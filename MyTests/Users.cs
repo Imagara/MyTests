@@ -18,6 +18,7 @@ namespace MyTests
         public Users()
         {
             this.Tests = new HashSet<Tests>();
+            this.Answers = new HashSet<Answers>();
         }
     
         public int IdUser { get; set; }
@@ -29,5 +30,7 @@ namespace MyTests
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tests> Tests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Answers> Answers { get; set; }
     }
 }

@@ -12,21 +12,12 @@ namespace MyTests
     using System;
     using System.Collections.Generic;
     
-    public partial class Questions
+    public partial class sysdiagrams
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Questions()
-        {
-            this.Answers = new HashSet<Answers>();
-        }
-    
-        public int IdQuestion { get; set; }
-        public int IdTest { get; set; }
-        public string Content { get; set; }
-        public string Answer { get; set; }
-    
-        public virtual Tests Tests { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Answers> Answers { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

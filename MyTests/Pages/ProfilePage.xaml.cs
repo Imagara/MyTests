@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MyTests.Pages
 {
@@ -27,9 +19,9 @@ namespace MyTests.Pages
                 ProfileImage.Source = new BitmapImage(new Uri("../Resources/StandartImage.png", UriKind.RelativeOrAbsolute));
             else
                 ProfileImage.Source = ImagesManip.NewImage(user);
+            EmailBox.Text = user.Email;
+            InfoBox.Text = user.Info;
             TestsLoading();
-            //EmailBox.Content = cnt.db.Dispatcher.Where(item => item.IdDispatcher == profile.DispatcherId).Select(item => item.Email).FirstOrDefault();
-            //PhoneNumBox.Content = "+7(" + phone.Substring(0, 3) + ")" + phone.Substring(3, 3) + "-" + phone.Substring(6, 2) + "-" + phone.Substring(8, 2);
         }
         private void EditImage_Click(object sender, RoutedEventArgs e)
         {
@@ -52,7 +44,18 @@ namespace MyTests.Pages
 
         private void SaveButton(object sender, RoutedEventArgs e)
         {
-
+            if (!Functions.IsValidEmail(EmailBox.Text))
+                new ErrorWindow("Email введен неверно.").Show();
+            else if (Functions.IsEmailAlreadyTaken(EmailBox.Text))
+                new ErrorWindow("Данный email уже используется.").Show();
+            else
+            {
+                Session.User.Email = EmailBox.Text;
+                Session.User.Info = InfoBox.Text;
+                cnt.db.SaveChanges();
+                new ErrorWindow("Успешно.").ShowDialog();
+            }
+            
         }
 
         private void BackButton(object sender, RoutedEventArgs e)
