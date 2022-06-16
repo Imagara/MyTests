@@ -5,11 +5,11 @@
     <SolidColorBrush x:Key="TextColor" 
                      Color="White">
     </SolidColorBrush>
-    
+
     <SolidColorBrush x:Key="color1" 
                      Color="#32353B">
     </SolidColorBrush>
-    
+
     <SolidColorBrush x:Key="color2" 
                      Color="#2F3136">
     </SolidColorBrush>
@@ -21,7 +21,7 @@
     <Style TargetType="Label">
         <Setter Property="Foreground" Value="White"/>
     </Style>
-    
+
     <Style TargetType="Run">
         <Setter Property="Foreground" Value="White"/>
     </Style>
@@ -42,7 +42,7 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Background" Value="{x:Null}"/>
     </Style>
-    
+
 
     <Style TargetType="ComboBox">
         <Setter Property="Foreground" Value="White"/>

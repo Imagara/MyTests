@@ -63,5 +63,10 @@ namespace MyTests
         {
             //MainFrame.Content = new СatalogPage();
         }
+
+        private void XEXE_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

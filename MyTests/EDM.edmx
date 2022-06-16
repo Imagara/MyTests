@@ -259,7 +259,7 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="MyTestsDataBaseModelStoreContainer" CdmEntityContainer="MyTestsDataBaseEntities">
     <EntitySetMapping Name="Questions">
       <EntityTypeMapping TypeName="IsTypeOf(MyTestsDataBaseModel.Questions)">
@@ -281,15 +281,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Users">
+          <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="IsTypeOf(MyTestsDataBaseModel.Users)">
-        <MappingFragment StoreEntitySet="Users">
+              <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="IdUser" ColumnName="IdUser" />
           <ScalarProperty Name="Login" ColumnName="Login" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Info" ColumnName="Info" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -314,7 +314,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-  </EntityContainerMapping>
+        </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
