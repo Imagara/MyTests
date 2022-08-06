@@ -13,20 +13,23 @@ namespace MyTests.Pages
         public ProfilePage(Users _user)
         {
             InitializeComponent();
-            user = _user;
-            UserName.Content = user.Login;
-            if (user.Image == null)
-                ProfileImage.Source = new BitmapImage(new Uri("../Resources/StandartImage.png", UriKind.RelativeOrAbsolute));
-            else
-                ProfileImage.Source = ImagesManip.NewImage(user);
-            EmailBox.Text = user.Email;
-            InfoBox.Text = user.Info;
-            if (user != Session.User)
+            if(_user != null)
             {
-                EmailBox.IsEnabled = false;
-                InfoBox.IsEnabled = false;
+                user = _user;
+                UserName.Content = user.Login;
+                if (user.Image == null)
+                    ProfileImage.Source = new BitmapImage(new Uri("../Resources/StandartImage.png", UriKind.RelativeOrAbsolute));
+                else
+                    ProfileImage.Source = ImagesManip.NewImage(user);
+                EmailBox.Text = user.Email;
+                InfoBox.Text = user.Info;
+                if (user != Session.User)
+                {
+                    EmailBox.IsEnabled = false;
+                    InfoBox.IsEnabled = false;
+                }
+                TestsLoading();
             }
-            TestsLoading();
         }
         private void EditImage_Click(object sender, RoutedEventArgs e)
         {

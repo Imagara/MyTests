@@ -15,17 +15,15 @@ using System.Windows.Shapes;
 
 namespace MyTests
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Content = new Pages.TestsCatalog();
+            MainFrame.Content = new Pages.LoginPage();
         }
 
+        #region Menu Bar
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -49,24 +47,7 @@ namespace MyTests
         {
             Application.Current.Shutdown();
         }
+        #endregion
 
-        private void ProfileClick(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Content = new Pages.ProfilePage(Session.User);
-        }
-
-        private void TestsCatalogClick(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Content = new Pages.TestsCatalog();
-        }
-        private void CreateTestClick(object sender, RoutedEventArgs e)
-        {
-            //MainFrame.Content = new СatalogPage();
-        }
-
-        private void XEXE_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
     }
 }

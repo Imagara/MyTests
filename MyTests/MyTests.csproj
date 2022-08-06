@@ -67,9 +67,6 @@
     <Compile Include="Answers.cs">
       <DependentUpon>EDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Authorization.xaml.cs">
-      <DependentUpon>Authorization.xaml</DependentUpon>
-    </Compile>
     <Compile Include="EDM.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -88,8 +85,17 @@
     <Compile Include="Pages\CurTestPage.xaml.cs">
       <DependentUpon>CurTestPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RegistrationPage.xaml.cs">
+      <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ResultTestPage.xaml.cs">
       <DependentUpon>ResultTestPage.xaml</DependentUpon>
@@ -103,12 +109,6 @@
     <Compile Include="Questions.cs">
       <DependentUpon>EDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="RegAuth.xaml.cs">
-      <DependentUpon>RegAuth.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Registration.xaml.cs">
-      <DependentUpon>Registration.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Session.cs" />
     <Compile Include="Styles\Style.cs" />
     <Compile Include="Tests.cs">
@@ -117,10 +117,6 @@
     <Compile Include="Users.cs">
       <DependentUpon>EDM.tt</DependentUpon>
     </Compile>
-    <Page Include="Authorization.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="ConfirmationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -154,7 +150,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RegistrationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -169,14 +177,6 @@
     <Page Include="Pages\TestsCatalog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RegAuth.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Registration.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\Style.xaml">
       <SubType>Designer</SubType>

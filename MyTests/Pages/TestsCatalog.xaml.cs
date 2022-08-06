@@ -20,6 +20,7 @@ namespace MyTests.Pages
         public TestsCatalog()
         {
             InitializeComponent();
+            TestsListBox.Items.Clear();
             LoadingTests();
         }
 
@@ -28,8 +29,7 @@ namespace MyTests.Pages
 
         }
         void LoadingTests()
-        {
-            TestsListBox.Items.Clear();
+        {            
             var list = cnt.db.Tests.ToList();
             if (TestNameBox.Text != "Название теста")
                 list = list.Where(item => item.Name == TestNameBox.Text).ToList();

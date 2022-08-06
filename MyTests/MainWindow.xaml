@@ -35,7 +35,7 @@
                             FontWeight="Bold" 
                             Click="ButtonMininize_Click"/>
 
-                    <Button Visibility="Visible"
+                    <Button Visibility="Collapsed"
                             Width="20" Height="20"
                             Content="☐"
                             Background="Transparent"
@@ -56,35 +56,9 @@
                 </StackPanel>
             </Grid>
         </Border>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="124"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <StackPanel Background="{StaticResource color2}" 
-                    Grid.Column="0">
-                <Button Height="30"
-                    Margin="5"
-                    Content="Создать тест"
-                    Click="CreateTestClick">
-                </Button>
-                <Button Height="30"
-                    Margin="5"
-                    Content="Тесты"
-                    Click="TestsCatalogClick">
-
-                </Button>
-                <Button Height="30"
-                    Margin="5"
-                    Content="Профиль"
-                    Click="ProfileClick">
-                </Button>
-            </StackPanel>
-            <Frame Name="MainFrame" 
-                   Grid.Column="1"
-                   NavigationUIVisibility="Hidden">
-            </Frame>
-        </Grid>
+        <Frame Name="MainFrame" 
+               Grid.Row="1"
+               NavigationUIVisibility="Hidden">
+        </Frame>
     </Grid>
 </Window>
