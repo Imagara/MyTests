@@ -82,6 +82,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EDM.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\CheckTestResults.xaml.cs">
+      <DependentUpon>CheckTestResults.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CheckTestResultsCatalog.xaml.cs">
+      <DependentUpon>CheckTestResultsCatalog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CurTestPage.xaml.cs">
       <DependentUpon>CurTestPage.xaml</DependentUpon>
     </Compile>
@@ -146,6 +152,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\CheckTestResults.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CheckTestResultsCatalog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\CurTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

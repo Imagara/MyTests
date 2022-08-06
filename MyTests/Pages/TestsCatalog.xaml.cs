@@ -32,7 +32,7 @@ namespace MyTests.Pages
         }
         void LoadingTests()
         {            
-            var list = cnt.db.Tests.ToList();
+            List<Tests> list = cnt.db.Tests.ToList();
             if (TestNameBox.Text != "Название теста")
                 list = list.Where(item => item.Name.StartsWith(TestNameBox.Text)).ToList();
             if (AuthorTestBox.Text != "Автор")

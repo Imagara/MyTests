@@ -32,6 +32,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Image" Type="varbinary(max)" />
           <Property Name="IsAnswersVisible" Type="bit" Nullable="false" />
+          <Property Name="IsVisible" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -152,6 +153,7 @@
           <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_Tests" FromRole="Tests" ToRole="Questions" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Tests_Users" FromRole="Tests" ToRole="Users" />
           <Property Name="IsAnswersVisible" Type="Boolean" Nullable="false" />
+          <Property Name="IsVisible" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -266,6 +268,7 @@
           <EntitySetMapping Name="Tests">
             <EntityTypeMapping TypeName="MyTestsDataBaseModel.Tests">
               <MappingFragment StoreEntitySet="Tests">
+                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
                 <ScalarProperty Name="IsAnswersVisible" ColumnName="IsAnswersVisible" />
                 <ScalarProperty Name="IdTest" ColumnName="IdTest" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
