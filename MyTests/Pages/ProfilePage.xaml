@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:MyTests.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" 
-      d:DesignWidth="800"
+      d:DesignWidth="676"
       Title="PartInfoPage"
       Background="{StaticResource color1}">
 
@@ -100,9 +100,9 @@
                             Background="{StaticResource color2}"
                             MouseDown="TestsListBox_Selected">
                         <StackPanel Orientation="Horizontal">
-                            <Image Width="35"
-                               Height="35"
-                               Margin="5"
+                            <Image Width="30"
+                               Height="30"
+                               Margin="10,5,5,5"
                                HorizontalAlignment="Left"
                                Source="/MyTests;component/Resources/approval.png">
                             </Image>
@@ -122,12 +122,13 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button Grid.Row="2"
+        <Button Name="SaveButton"
+                Grid.Row="2"
                 Width="120"
                 Margin="5,0,5,0"
                 Content="Сохранить"
                 FontSize="20"
-                Click="SaveButton">
+                Click="SaveButton_Click">
         </Button>
     </Grid>
 </Page>

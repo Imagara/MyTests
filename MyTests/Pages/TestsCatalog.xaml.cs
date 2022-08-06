@@ -21,6 +21,8 @@ namespace MyTests.Pages
         {
             InitializeComponent();
             TestsListBox.Items.Clear();
+            if (Session.User.Post == "Преподаватель")
+                AddTestButton.Visibility = Visibility.Visible;
             LoadingTests();
         }
 
@@ -32,9 +34,9 @@ namespace MyTests.Pages
         {            
             var list = cnt.db.Tests.ToList();
             if (TestNameBox.Text != "Название теста")
-                list = list.Where(item => item.Name == TestNameBox.Text).ToList();
+                list = list.Where(item => item.Name.StartsWith(TestNameBox.Text)).ToList();
             if (AuthorTestBox.Text != "Автор")
-                list = list.Where(item => item.Users.Login == AuthorTestBox.Text).ToList();
+                list = list.Where(item => item.Users.Login.StartsWith(AuthorTestBox.Text)).ToList();
             TestsListBox.ItemsSource = list;
         }
 

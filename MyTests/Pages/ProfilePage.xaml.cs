@@ -27,8 +27,12 @@ namespace MyTests.Pages
                 {
                     EmailBox.IsEnabled = false;
                     InfoBox.IsEnabled = false;
+                    SaveButton.Visibility = Visibility.Collapsed;
                 }
-                TestsLoading();
+                if(user.Post == "Преподаватель")
+                    TestsLoading();
+                else
+                    TestsListBox.Visibility = Visibility.Collapsed;
             }
         }
         private void EditImage_Click(object sender, RoutedEventArgs e)
@@ -50,7 +54,7 @@ namespace MyTests.Pages
             TestsListBox.ItemsSource = cnt.db.Tests.Where(item => item.IdUser == user.IdUser).ToList();
         }
 
-        private void SaveButton(object sender, RoutedEventArgs e)
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             if (!Functions.IsValidEmail(EmailBox.Text))
                 new ErrorWindow("Email введен неверно.").Show();
@@ -64,11 +68,6 @@ namespace MyTests.Pages
                 new ErrorWindow("Успешно.").ShowDialog();
             }
             
-        }
-
-        private void BackButton(object sender, RoutedEventArgs e)
-        {
-
         }
         private void TestsListBox_Selected(object sender, RoutedEventArgs e)
         {

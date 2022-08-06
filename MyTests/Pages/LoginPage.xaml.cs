@@ -33,7 +33,10 @@ namespace MyTests.Pages
         private void LogButton_Click(object sender, RoutedEventArgs e)
         {
             if (Test)
+            {
+                Session.User = cnt.db.Users.Where(item => item.IdUser == 1).FirstOrDefault();
                 NavigationService.Navigate(new Pages.MainPage());
+            }
             else
             {
                 try

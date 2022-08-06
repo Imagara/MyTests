@@ -10,6 +10,8 @@ namespace MyTests.Pages
         public ResultTestPage()
         {
             InitializeComponent();
+            if (Session.OpenedTest.IsAnswersVisible == true)
+                CheckAnswersButton.Visibility = Visibility.Visible;
             ResultTB.Text = $"{Session.Points}/{Session.OpenedTest.Questions.Count}";
         }
 
@@ -24,7 +26,7 @@ namespace MyTests.Pages
         }
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Pages.ProfilePage( cnt.db.Users.Where(item => item.IdUser == Session.OpenedTest.IdUser).FirstOrDefault()));
+            NavigationService.Navigate(new Pages.ProfilePage(cnt.db.Users.Where(item => item.IdUser == Session.OpenedTest.IdUser).FirstOrDefault()));
         }
     }
 }

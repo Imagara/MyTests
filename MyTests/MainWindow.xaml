@@ -19,9 +19,18 @@
                 MouseDown="Border_MouseDown" 
                 Grid.Row="0">
             <Grid HorizontalAlignment="Stretch">
-                <Label Content="MyTests"
+                <StackPanel Orientation="Horizontal"
+                            Margin="10,0,0,0">
+                    <Image Width="17"
+                           Height="17"
+                           Source="Resources/Ico.png">
+                    </Image>
+
+                    <Label Content="MyTests"
                        Foreground="Gray"
-                       FontWeight="SemiBold"/>
+                       FontWeight="Bold"/>
+                </StackPanel>
+                
 
                 <StackPanel HorizontalAlignment="Right"
                             Orientation="Horizontal">

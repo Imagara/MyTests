@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MyTests.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="ResultTestPage"
+      d:DesignHeight="450" 
+      d:DesignWidth="676"
       Background="{StaticResource color1}">
 
     <Grid Margin="20" 
@@ -25,7 +25,7 @@
                 <Run Text="Ваш результат"/>
             </TextBlock>
             <TextBlock Name="ResultTB"
-                       Text="0/20"
+                       Text="0/0"
                        FontSize="50"
                        HorizontalAlignment="Center">
             </TextBlock>
@@ -36,17 +36,19 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     Height="40">
-            <Button Content="Посмотреть мои ответы"
+            <Button Name="CheckAnswersButton"
+                    Content="Посмотреть мои ответы"
                     Width="150"
-                    Margin="0,0,10,0"
-                    Click="AnswersButton_Click"/>
-            <Button Content="Профиль автора"
+                    Margin="10,0,10,0"
+                    Click="AnswersButton_Click"
+                    Visibility="Collapsed"/>
+            <Button Content="Профиль преподавателя"
                     Width="150"
                     Margin="10,0,10,0"
                     Click="ProfileButton_Click"/>
-            <Button Content="К тестам"
+            <Button Content="В главное меню"
                     Width="150"
-                    Margin="10,0,0,0"
+                    Margin="10,0,10,0"
                     Click="ExitButton_Click"/>
         </StackPanel>
     </Grid>

@@ -23,6 +23,8 @@ namespace MyTests.Pages
         public MainPage()
         {
             InitializeComponent();
+            if (Session.User.Post != "Преподаватель")
+                CreateTest.Visibility = Visibility.Collapsed;
         }
         private void ProfileClick(object sender, RoutedEventArgs e)
         {

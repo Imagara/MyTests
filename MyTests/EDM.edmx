@@ -31,6 +31,7 @@
           <Property Name="IdUser" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Image" Type="varbinary(max)" />
+          <Property Name="IsAnswersVisible" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -42,7 +43,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Info" Type="nvarchar" MaxLength="50" />
           <Property Name="Image" Type="varbinary(max)" />
-          <Property Name="Post" Type="nvarchar" MaxLength="10" />
+          <Property Name="Post" Type="nvarchar" MaxLength="25" />
         </EntityType>
         <Association Name="FK_Answers_Questions">
           <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
@@ -150,6 +151,7 @@
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_Tests" FromRole="Tests" ToRole="Questions" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Tests_Users" FromRole="Tests" ToRole="Users" />
+          <Property Name="IsAnswersVisible" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -163,7 +165,7 @@
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Answers" Relationship="Self.FK_Answers_Users" FromRole="Users" ToRole="Answers" />
           <NavigationProperty Name="Tests" Relationship="Self.FK_Tests_Users" FromRole="Users" ToRole="Tests" />
-          <Property Name="Post" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Post" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Answers_Questions">
           <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
@@ -264,6 +266,7 @@
           <EntitySetMapping Name="Tests">
             <EntityTypeMapping TypeName="MyTestsDataBaseModel.Tests">
               <MappingFragment StoreEntitySet="Tests">
+                <ScalarProperty Name="IsAnswersVisible" ColumnName="IsAnswersVisible" />
                 <ScalarProperty Name="IdTest" ColumnName="IdTest" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

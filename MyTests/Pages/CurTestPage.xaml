@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MyTests.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="CurTestPage"
+      d:DesignHeight="450" 
+      d:DesignWidth="676"
       Background="{StaticResource color1}">
 
     <Grid Margin="20" 
@@ -16,7 +16,7 @@
             <RowDefinition Height="89*"/>
         </Grid.RowDefinitions>
         <TextBlock Name="QuestionBox"
-                   Text="Тут типа вопрос"
+                   Text="Вопрос?"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    FontSize="40"

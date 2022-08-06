@@ -24,6 +24,7 @@ namespace MyTests
         public int IdUser { get; set; }
         public string Name { get; set; }
         public byte[] Image { get; set; }
+        public bool IsAnswersVisible { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Questions> Questions { get; set; }

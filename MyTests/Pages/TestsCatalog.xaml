@@ -18,11 +18,13 @@
                 Margin="5">
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
-                <Button Height="45"
+                <Button Name="AddTestButton"
+                        Height="45"
                         Width="45"
                         Content="+"
                         FontSize="30"
-                        Click="AddTest_Click">
+                        Click="AddTest_Click"
+                        Visibility="Collapsed">
                 </Button>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="0"
@@ -62,9 +64,9 @@
                             Background="{StaticResource color2}"
                             MouseDown="TestsListBox_Selected">
                         <StackPanel Orientation="Horizontal">
-                            <Image Width="35"
-                               Height="35"
-                               Margin="5"
+                            <Image Width="30"
+                               Height="30"
+                               Margin="10,5,5,5"
                                HorizontalAlignment="Left"
                                Source="/MyTests;component/Resources/approval.png">
                             </Image>
