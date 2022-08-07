@@ -23,29 +23,43 @@
                    FontSize="25">
             </Label>
         </StackPanel>
-        <ListBox Name="TestsListBox"
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Label Content="Прошел:"
+                   FontSize="20">
+            </Label>
+            <Image Name="AuthorImg"
+                   Source="/MyTests;component/Resources/StandartImage.png"
+                   Margin="7">
+            </Image>
+            <Label Name="PassedLabel"
+                   Content="USER"
+                   FontSize="20"
+                   MouseDown="PassedLabel_MouseDown">
+            </Label>
+        </StackPanel>
+        <ListBox Name="AnswersListBox"
                  Background="{StaticResource color1}"
                  BorderBrush="{Binding TestsListBox}" 
                  Grid.Row="1">
             <ScrollViewer VerticalScrollBarVisibility="Visible"/>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border Width="{Binding Path=ActualWidth, ElementName=TestsListBox}"
+                    <Border Width="{Binding Path=ActualWidth, ElementName=AnswersListBox}"
                             Height="50"
                             CornerRadius="10"
                             Background="{StaticResource color2}">
                         <StackPanel Orientation="Horizontal">
                             <Label MinWidth="30"
-                                   Content="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},
-                                      Path=(ItemsControl.AlternationIndex)}"
+                                   Content="{Binding AnswerNum}"
                                    VerticalContentAlignment="Center"
                                    HorizontalContentAlignment="Center">
                             </Label>
                             <StackPanel>
-                                <Label Content="{Binding Questions.Content}"/>
+                                <Label Content="{Binding Answer.Questions.Content}"/>
                                 <TextBlock>
                                 <Run Text="Ответ: " Foreground="LightGray"/>
-                                <Run Text="{Binding Answer}" Foreground="White"/>
+                                <Run Text="{Binding Answer.Answer}" Foreground="White"/>
                                 </TextBlock>
                             </StackPanel>
                         </StackPanel>

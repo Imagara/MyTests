@@ -33,6 +33,7 @@ namespace MyTests.Pages
                 {
                     Answers answer = cnt.db.Answers.Where(item => item.IdQuestion == cnt.db.Questions.Where(i => i.Content == strContent && i.Answer == strAnswer).Select(i => i.IdQuestion).FirstOrDefault() && item.IdUser == Session.User.IdUser).FirstOrDefault();
                     answer.Answer = AnswerBox.Text;
+                    cnt.db.SaveChanges();
                 }
                 else
                 {
@@ -49,8 +50,7 @@ namespace MyTests.Pages
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
-                //new ErrorWindow(ex.ToString()).ShowDialog();
+                new ErrorWindow(ex.Message).ShowDialog();
             }
 
             if (AnswerBox.Text.ToLower().Trim() == Session.Quest.Answer[Session.CurQuestion].ToLower().Trim())

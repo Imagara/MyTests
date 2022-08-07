@@ -39,12 +39,20 @@ namespace MyTests
 
         public static BitmapImage NewImage(Users user)
         {
-            MemoryStream ms = new MemoryStream(user.Image);
-            BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            image.StreamSource = ms;
-            image.EndInit();
-            return image;
+            try
+            {
+                MemoryStream ms = new MemoryStream(user.Image);
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.StreamSource = ms;
+                image.EndInit();
+                return image;
+            }
+            catch
+            {
+                return new BitmapImage(new Uri("../Resources/StandartImage.png", UriKind.RelativeOrAbsolute));
+            }
+            
         }
     }
 }

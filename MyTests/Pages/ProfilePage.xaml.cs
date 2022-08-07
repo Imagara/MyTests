@@ -13,27 +13,25 @@ namespace MyTests.Pages
         public ProfilePage(Users _user)
         {
             InitializeComponent();
-            if (_user != null)
+            TestsListBox.Items.Clear();
+            user = _user;
+            UserName.Content = user.Login;
+            if (user.Image == null)
+                ProfileImage.Source = new BitmapImage(new Uri("../Resources/StandartImage.png", UriKind.RelativeOrAbsolute));
+            else
+                ProfileImage.Source = ImagesManip.NewImage(user);
+            EmailBox.Text = user.Email;
+            InfoBox.Text = user.Info;
+            if (user != Session.User)
             {
-                user = _user;
-                UserName.Content = user.Login;
-                if (user.Image == null)
-                    ProfileImage.Source = new BitmapImage(new Uri("../Resources/StandartImage.png", UriKind.RelativeOrAbsolute));
-                else
-                    ProfileImage.Source = ImagesManip.NewImage(user);
-                EmailBox.Text = user.Email;
-                InfoBox.Text = user.Info;
-                if (user != Session.User)
-                {
-                    EmailBox.IsEnabled = false;
-                    InfoBox.IsEnabled = false;
-                    SaveButton.Visibility = Visibility.Collapsed;
-                }
-                if (user.Post == "Преподаватель")
-                    TestsLoading();
-                else
-                    TestsListBox.Visibility = Visibility.Collapsed;
+                EmailBox.IsEnabled = false;
+                InfoBox.IsEnabled = false;
+                SaveButton.Visibility = Visibility.Collapsed;
             }
+            if (user.Post == "Преподаватель")
+                TestsLoading();
+            else
+                TestsListBox.Visibility = Visibility.Collapsed;
         }
         private void EditImage_Click(object sender, RoutedEventArgs e)
         {
@@ -50,9 +48,8 @@ namespace MyTests.Pages
         }
         private void TestsLoading()
         {
-            TestsListBox.Items.Clear();
-            if(user != Session.User)
-            TestsListBox.ItemsSource = cnt.db.Tests.Where(item => item.IdUser == user.IdUser && item.IsVisible == true).ToList();
+            if (user != Session.User)
+                TestsListBox.ItemsSource = cnt.db.Tests.Where(item => item.IdUser == user.IdUser && item.IsVisible == true).ToList();
             else
                 TestsListBox.ItemsSource = cnt.db.Tests.Where(item => item.IdUser == user.IdUser).ToList();
         }
@@ -104,6 +101,26 @@ namespace MyTests.Pages
             catch
             {
                 new ErrorWindow("Ошибка открытия теста.").ShowDialog();
+            }
+        }
+
+        private void DeleteTestButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            if (btn.DataContext is Tests)
+            {
+                ConfirmationWindow confWindow = new ConfirmationWindow();
+                confWindow.ShowDialog();
+                if (confWindow.answer)
+                {
+                    foreach (Answers answer in cnt.db.Answers.Where(item => item.Questions.IdTest == ((Tests)btn.DataContext).IdTest))
+                        cnt.db.Answers.Remove(answer);
+                    foreach (Questions question in cnt.db.Questions.Where(item => item.IdTest == ((Tests)btn.DataContext).IdTest))
+                        cnt.db.Questions.Remove(question);
+                    cnt.db.Tests.Remove((Tests)btn.DataContext);
+                    cnt.db.SaveChanges();
+                    TestsLoading();
+                }
             }
         }
     }

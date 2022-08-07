@@ -35,7 +35,9 @@
                        HorizontalAlignment="Center">
                 </Label>
                 <Image Name="ProfileImage"
-                   Grid.Row="1"
+                       MinHeight="100"
+                       MinWidth="100"
+                       Grid.Row="1"
                        Margin="10,0,10,10"
                    Source="/MyTests;component/Resources/StandartImage.png"
                    MouseDown="EditImage_Click">
@@ -90,8 +92,9 @@
                  Margin="10,0,10,0"
                  Background="{StaticResource color1}"
                  BorderBrush="{x:Null}"
-                 SelectionChanged="TestsListBox_SelectionChanged">
-            <ScrollViewer VerticalScrollBarVisibility="Visible"/>
+                 SelectionChanged="TestsListBox_SelectionChanged"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Width="{Binding Path=ActualWidth, ElementName=TestsListBox}"
@@ -121,14 +124,22 @@
                             <StackPanel Orientation="Horizontal"
                                         HorizontalAlignment="Right">
                                 <Button Width="30" Height="30"
-                                    Margin="0,0,5,0"
-                                    Content="✓"
-                                    Click="CheckResultsButton_Click">
+                                        Margin="0,0,5,0"
+                                        Content="✓"
+                                        Visibility="{Binding Path=Visibility, ElementName=SaveButton}"
+                                        Click="CheckResultsButton_Click">
                                 </Button>
                                 <Button Width="30" Height="30"
-                                    Margin="0,0,5,0"
-                                    Content="✎"
-                                    Click="EditTestButton_Click">
+                                        Margin="0,0,5,0"
+                                        Content="✎"
+                                        Visibility="{Binding Path=Visibility, ElementName=SaveButton}"
+                                        Click="EditTestButton_Click">
+                                </Button>
+                                <Button Width="30" Height="30"
+                                        Margin="0,0,5,0"
+                                        Content="✕"
+                                        Visibility="{Binding Path=Visibility, ElementName=SaveButton}"
+                                        Click="DeleteTestButton_Click">
                                 </Button>
                             </StackPanel>
                             

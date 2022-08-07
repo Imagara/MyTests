@@ -12,12 +12,15 @@
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None" 
         ResizeMode="NoResize">
-    <Grid Background="#FF2D2D2D">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="27*"/>
-            <RowDefinition Height="13*"/>
-        </Grid.RowDefinitions>
-        <TextBlock Name="ErrorLabel" 
+    <Border BorderBrush="Black"
+            BorderThickness="1"
+            MouseDown="Border_MouseDown">
+        <Grid Background="#FF2D2D2D">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="27*"/>
+                <RowDefinition Height="13*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Name="ErrorLabel" 
                Text="Вы действительно хотите это сделать?" 
                TextWrapping="Wrap"
                HorizontalAlignment="Center" 
@@ -25,26 +28,27 @@
                VerticalAlignment="Top" 
                Width="262"
                    Background="{x:Null}">
-        </TextBlock>
-        <Grid Grid.Row="1">
-            <StackPanel Orientation="Horizontal"
+            </TextBlock>
+            <Grid Grid.Row="1">
+                <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center">
-                <Button Content="Да" 
+                    <Button Content="Да" 
                 VerticalAlignment="Bottom" 
                 HorizontalAlignment="Center" 
                 Height="30" 
                 Width="130" 
                         Margin="0,0,5,0"
                 Click="YesButton"/>
-                <Button Content="Нет" 
+                    <Button Content="Нет" 
                 VerticalAlignment="Bottom" 
                 HorizontalAlignment="Center" 
                 Height="30" 
                 Width="130"
                         Margin="5,0,0,0"
                 Click="NoButton"/>
-            </StackPanel>
+                </StackPanel>
+            </Grid>
         </Grid>
-    </Grid>
+    </Border>
 </Window>

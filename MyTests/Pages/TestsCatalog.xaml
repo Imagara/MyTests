@@ -62,8 +62,9 @@
                  Grid.Row="1"
                  Background="{StaticResource color1}"
                  BorderBrush="{x:Null}"
-                 SelectionChanged="TestsListBox_SelectionChanged">
-            <ScrollViewer VerticalScrollBarVisibility="Visible"/>
+                 SelectionChanged="TestsListBox_SelectionChanged"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Width="{Binding Path=ActualWidth, ElementName=TestsListBox}"
