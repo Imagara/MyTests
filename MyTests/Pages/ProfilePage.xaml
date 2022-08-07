@@ -89,7 +89,8 @@
                  Grid.Row="1"
                  Margin="10,0,10,0"
                  Background="{StaticResource color1}"
-                 BorderBrush="{x:Null}">
+                 BorderBrush="{x:Null}"
+                 SelectionChanged="TestsListBox_SelectionChanged">
             <ScrollViewer VerticalScrollBarVisibility="Visible"/>
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -97,26 +98,41 @@
                             Margin="-10,0,0,0"
                             Height="45"
                             CornerRadius="10"
-                            Background="{StaticResource color2}"
-                            MouseDown="TestsListBox_Selected">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Width="30"
+                            Background="{StaticResource color2}">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="30"
                                Height="30"
                                Margin="10,5,5,5"
                                HorizontalAlignment="Left"
                                Source="/MyTests;component/Resources/approval.png">
-                            </Image>
-                            <StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="{Binding Name}"/>
-                                    <Label Content="{Binding Users.Login}"/>
-                                </StackPanel>
-                                <TextBlock Margin="0,-7,0,0">
+                                </Image>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding Name}"/>
+                                        <Label Content="{Binding Users.Login}"/>
+                                    </StackPanel>
+                                    <TextBlock Margin="0,-7,0,0">
                                     <Run Text="Вопросов: " Foreground="White"/>
                                     <Run Text="{Binding Questions.Count, Mode=OneTime}"/>
-                                </TextBlock>
+                                    </TextBlock>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Right">
+                                <Button Width="30" Height="30"
+                                    Margin="0,0,5,0"
+                                    Content="✓"
+                                    Click="CheckResultsButton_Click">
+                                </Button>
+                                <Button Width="30" Height="30"
+                                    Margin="0,0,5,0"
+                                    Content="✎"
+                                    Click="EditTestButton_Click">
+                                </Button>
+                            </StackPanel>
+                            
+                        </Grid>
                     </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>

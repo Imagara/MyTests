@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace MyTests
 {
@@ -7,7 +9,7 @@ namespace MyTests
         // Валидация логина и пароля при входе
         public static bool IsValidLogAndPass(string login, string password)
         {
-            if (login == "" || password == "")
+            if (login.Trim() == "" || password.Trim() == "")
                 return false;
             else
                 return true;
@@ -53,6 +55,13 @@ namespace MyTests
         public static bool IsEmailAlreadyTaken(string Email)
         {
             return cnt.db.Users.Select(item => item.Email).Contains(Email);
+        }
+        public static string EncryptPassword(string password)
+        {
+            using (var hash = SHA1.Create())
+            {
+                return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x => x.ToString("X2")));
+            }
         }
     }
 }

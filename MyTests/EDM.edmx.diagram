@@ -7,8 +7,8 @@
       <Diagram DiagramId="d43acb8abf174d81b935ee8c6a0e239d" Name="Diagram1">
         <EntityTypeShape EntityType="MyTestsDataBaseModel.Answers" Width="1.5" PointX="5.625" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MyTestsDataBaseModel.Questions" Width="1.5" PointX="5.625" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyTestsDataBaseModel.Tests" Width="1.5" PointX="2.875" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyTestsDataBaseModel.Users" Width="1.5" PointX="2.625" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyTestsDataBaseModel.Tests" Width="1.5" PointX="2.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyTestsDataBaseModel.Users" Width="1.5" PointX="2.25" PointY="2.125" IsExpanded="true" />
         <AssociationConnector Association="MyTestsDataBaseModel.FK_Answers_Questions" ManuallyRouted="false" />
         <AssociationConnector Association="MyTestsDataBaseModel.FK_Answers_Users" ManuallyRouted="false" />
         <AssociationConnector Association="MyTestsDataBaseModel.FK_Questions_Tests" ManuallyRouted="false" />

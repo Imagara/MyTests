@@ -44,7 +44,10 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Info" Type="nvarchar" MaxLength="50" />
           <Property Name="Image" Type="varbinary(max)" />
-          <Property Name="Post" Type="nvarchar" MaxLength="25" />
+          <Property Name="Post" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Answers_Questions">
           <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
@@ -167,7 +170,10 @@
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Answers" Relationship="Self.FK_Answers_Users" FromRole="Users" ToRole="Answers" />
           <NavigationProperty Name="Tests" Relationship="Self.FK_Tests_Users" FromRole="Users" ToRole="Tests" />
-          <Property Name="Post" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Post" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Answers_Questions">
           <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
@@ -280,6 +286,9 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="MyTestsDataBaseModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="Post" ColumnName="Post" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="Login" ColumnName="Login" />

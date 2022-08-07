@@ -13,7 +13,7 @@ namespace MyTests.Pages
         public ProfilePage(Users _user)
         {
             InitializeComponent();
-            if(_user != null)
+            if (_user != null)
             {
                 user = _user;
                 UserName.Content = user.Login;
@@ -29,7 +29,7 @@ namespace MyTests.Pages
                     InfoBox.IsEnabled = false;
                     SaveButton.Visibility = Visibility.Collapsed;
                 }
-                if(user.Post == "Преподаватель")
+                if (user.Post == "Преподаватель")
                     TestsLoading();
                 else
                     TestsListBox.Visibility = Visibility.Collapsed;
@@ -37,7 +37,7 @@ namespace MyTests.Pages
         }
         private void EditImage_Click(object sender, RoutedEventArgs e)
         {
-            if(user == Session.User)
+            if (user == Session.User)
             {
                 BitmapImage image = ImagesManip.SelectImage();
                 if (image != null)
@@ -51,7 +51,10 @@ namespace MyTests.Pages
         private void TestsLoading()
         {
             TestsListBox.Items.Clear();
-            TestsListBox.ItemsSource = cnt.db.Tests.Where(item => item.IdUser == user.IdUser).ToList();
+            if(user != Session.User)
+            TestsListBox.ItemsSource = cnt.db.Tests.Where(item => item.IdUser == user.IdUser && item.IsVisible == true).ToList();
+            else
+                TestsListBox.ItemsSource = cnt.db.Tests.Where(item => item.IdUser == user.IdUser).ToList();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -67,9 +70,43 @@ namespace MyTests.Pages
                 cnt.db.SaveChanges();
                 new ErrorWindow("Успешно.").ShowDialog();
             }
-            
+
         }
-        private void TestsListBox_Selected(object sender, RoutedEventArgs e)
+        private void TestsListBox_Selectedd(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (((Tests)TestsListBox.SelectedItem) != null)
+                {
+                    Session.OpenedTest = cnt.db.Tests.Where(item => item.IdTest == ((Tests)TestsListBox.SelectedItem).IdTest).FirstOrDefault();
+                    Session.Points = 0;
+                    Session.CurQuestion = 0;
+                    Session.Quest.Content = cnt.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Content).ToArray();
+                    Session.Quest.Answer = cnt.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Answer).ToArray();
+
+                    NavigationService.Navigate(new Pages.CurTestPage());
+                }
+            }
+            catch
+            {
+                new ErrorWindow("Ошибка открытия теста.").ShowDialog();
+            }
+        }
+
+        private void CheckResultsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            if (btn.DataContext is Tests)
+                NavigationService.Navigate(new Pages.CheckTestResultsCatalog((Tests)btn.DataContext));
+        }
+        private void EditTestButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            if (btn.DataContext is Tests)
+                NavigationService.Navigate(new Pages.EditTestPage((Tests)btn.DataContext));
+        }
+
+        private void TestsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {

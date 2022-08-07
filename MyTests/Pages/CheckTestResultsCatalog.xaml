@@ -14,18 +14,17 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <ListBox Name="TestsListBox"
+        <ListBox Name="AnswersListBox"
                  Background="{StaticResource color1}"
                  BorderBrush="{x:Null}">
             <ScrollViewer VerticalScrollBarVisibility="Visible"/>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Width="{Binding Path=ActualWidth, ElementName=TestsListBox}"
-                            Margin="-10,0,0,0"
+                            Margin="-7,0,0,0"
                             Height="45"
                             CornerRadius="10"
-                            Background="{StaticResource color2}"
-                            MouseDown="TestsListBox_Selected">
+                            Background="{StaticResource color2}">
                         <StackPanel Orientation="Horizontal">
                             <Image Width="30"
                                Height="30"
@@ -35,12 +34,19 @@
                             </Image>
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <Label Content="{Binding Name}"/>
-                                    <Label Content="{Binding Users.Login}"/>
+                                    <Label Content="{Binding surname}"/>
+                                    <Label Content="{Binding name}"/>
+                                    <Label Content="{Binding patronymic}"/>
                                 </StackPanel>
                                 <TextBlock Margin="0,-7,0,0">
-                                    <Run Text="Вопросов: " Foreground="White"/>
-                                    <Run Text="{Binding Questions.Count, Mode=OneTime}" />
+                                    <Run Text="Вопросов: " 
+                                         Foreground="White"/>
+                                    <Run Text="{Binding correct}"
+                                         Foreground="White"/>
+                                    <Run Text="/" 
+                                         Foreground="White"/>
+                                    <Run Text="{Binding count}"
+                                         Foreground="White"/>
                                 </TextBlock>
                             </StackPanel>
                         </StackPanel>

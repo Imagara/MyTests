@@ -91,6 +91,9 @@
     <Compile Include="Pages\CurTestPage.xaml.cs">
       <DependentUpon>CurTestPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\EditTestPage.xaml.cs">
+      <DependentUpon>EditTestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -161,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\CurTestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EditTestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -20,9 +20,36 @@ namespace MyTests.Pages
     /// </summary>
     public partial class CheckTestResultsCatalog : Page
     {
-        public CheckTestResultsCatalog()
+        public CheckTestResultsCatalog(Tests _test)
         {
             InitializeComponent();
+
+            AnswersListBox.Items.Clear();
+
+            List<AnswerClass> answerList = new List<AnswerClass>();
+
+            foreach (Users user in cnt.db.Users)
+            {
+                AnswerClass newUserAnswer = new AnswerClass();
+                newUserAnswer.surname = user.Surname;
+                newUserAnswer.name = user.Name;
+                newUserAnswer.patronymic = user.Patronymic;
+                newUserAnswer.correct = -1; //add count of correct answers
+                newUserAnswer.count = user.Tests.Where(item => item.Questions == _test.Questions).Count();
+
+                answerList.Add(newUserAnswer);
+            }
+
+            AnswersListBox.ItemsSource = answerList;
+
+        }
+        public class AnswerClass
+        {
+            public string surname { get; set; }
+            public string name { get; set; }
+            public string patronymic { get; set; }
+            public int correct { get; set; }
+            public int count { get; set; }
         }
     }
 }
