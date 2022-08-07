@@ -20,36 +20,63 @@ namespace MyTests.Pages
     /// </summary>
     public partial class CheckTestResultsCatalog : Page
     {
+        Tests test;
         public CheckTestResultsCatalog(Tests _test)
         {
             InitializeComponent();
-
+            test = _test;
             AnswersListBox.Items.Clear();
 
             List<AnswerClass> answerList = new List<AnswerClass>();
 
-            foreach (Users user in cnt.db.Users)
+            foreach (Users user in cnt.db.Users.Where(item => item.Answers.Count() > 0))
             {
-                AnswerClass newUserAnswer = new AnswerClass();
-                newUserAnswer.surname = user.Surname;
-                newUserAnswer.name = user.Name;
-                newUserAnswer.patronymic = user.Patronymic;
-                newUserAnswer.correct = -1; //add count of correct answers
-                newUserAnswer.count = user.Tests.Where(item => item.Questions == _test.Questions).Count();
+                if(cnt.db.Answers.Select(item => item.Questions.IdTest + " " + item.IdUser).Contains(_test.IdTest + " " + user.IdUser))
+                {
+                    AnswerClass newUserAnswer = new AnswerClass();
+                    newUserAnswer.User = user;
+                    newUserAnswer.Correct = CorrectAnswersCounter(_test, user);
+                    newUserAnswer.Count = cnt.db.Questions.Where(item => item.IdTest == _test.IdTest).Count();
 
-                answerList.Add(newUserAnswer);
+                    answerList.Add(newUserAnswer);
+                }
             }
 
             AnswersListBox.ItemsSource = answerList;
+            if (AnswersListBox.Items.Count == 0)
+                ResultLabel.Content = "На данный момент тест еще никто не прошел.";
 
+        }
+        public int CorrectAnswersCounter(Tests test, Users user)
+        {
+            Quest.Answer = cnt.db.Questions.Where(item => item.IdTest == test.IdTest).Select(it => it.Answer).ToArray();
+            Quest.UserAnswer = cnt.db.Answers.Where(item => item.Users.IdUser == user.IdUser && item.Questions.IdTest == test.IdTest).Select(it => it.Answer).ToArray();
+            int value = 0;
+            for (int i = 0; i < Quest.Answer.Length; i++)
+                if (Quest.Answer[i] == Quest.UserAnswer[i])
+                    value++;
+            return value;
+        }
+
+        private void AnswersListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (((AnswerClass)AnswersListBox.SelectedItem) != null)
+            {
+                NavigationService.Navigate(new Pages.CheckTestResults(test, 
+                    cnt.db.Users.Where(item => item.IdUser == ((AnswerClass)AnswersListBox.SelectedItem).User.IdUser).FirstOrDefault()));
+            }
+        }
+
+        public static class Quest
+        {
+            public static string[] Answer;
+            public static string[] UserAnswer;
         }
         public class AnswerClass
         {
-            public string surname { get; set; }
-            public string name { get; set; }
-            public string patronymic { get; set; }
-            public int correct { get; set; }
-            public int count { get; set; }
+            public Users User { get; set; }
+            public int Correct { get; set; }
+            public int Count { get; set; }
         }
     }
 }

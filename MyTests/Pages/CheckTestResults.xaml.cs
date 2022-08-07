@@ -15,14 +15,15 @@ using System.Windows.Shapes;
 
 namespace MyTests.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для CheckTestResults.xaml
-    /// </summary>
     public partial class CheckTestResults : Page
     {
-        public CheckTestResults()
+        public CheckTestResults(Tests _test, Users _user)
         {
             InitializeComponent();
+            TestName.Content = _test.Name;
+            TestsListBox.Items.Clear();
+            TestsListBox.ItemsSource = cnt.db.Answers.Where(item => item.Questions.IdTest == _test.IdTest &&
+            item.IdUser == Session.User.IdUser).ToList();
         }
     }
 }

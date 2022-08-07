@@ -31,11 +31,11 @@ namespace MyTests.Pages
 
         }
         void LoadingTests()
-        {            
-            List<Tests> list = cnt.db.Tests.Where(item => item.IsVisible == true).ToList();
+        {
+            List<Tests> list = cnt.db.Tests.Where(item => item.IsVisible == true && item.Questions.Count > 0).ToList();
             if (TestNameBox.Text != "Название теста")
                 list = list.Where(item => item.Name.StartsWith(TestNameBox.Text)).ToList();
-            if (AuthorTestBox.Text != "Автор")
+            if (AuthorTestBox.Text != "Преподаватель")
                 list = list.Where(item => item.Users.Login.StartsWith(AuthorTestBox.Text)).ToList();
             TestsListBox.ItemsSource = list;
         }
@@ -44,7 +44,30 @@ namespace MyTests.Pages
         {
             LoadingTests();
         }
-        private void TestsListBox_Selected(object sender, RoutedEventArgs e)
+
+        private void TestNameBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TestNameBox.Text = string.Empty;
+        }
+
+        private void TestNameBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (TestNameBox.Text.Trim() == "")
+                TestNameBox.Text = "Название теста";
+        }
+
+        private void AuthorTestBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            AuthorTestBox.Text = string.Empty;
+        }
+
+        private void AuthorTestBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (AuthorTestBox.Text.Trim() == "")
+                AuthorTestBox.Text = "Преподаватель";
+        }
+
+        private void TestsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {

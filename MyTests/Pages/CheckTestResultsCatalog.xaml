@@ -10,17 +10,26 @@
 
     <Grid Background="{StaticResource color1}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
+        <Label Name="ResultLabel"
+               Content="Результаты:"
+               FontSize="16">
+            
+        </Label>
+        
         <ListBox Name="AnswersListBox"
                  Background="{StaticResource color1}"
-                 BorderBrush="{x:Null}">
+                 BorderBrush="{x:Null}" 
+                 Grid.Row="1"
+                 SelectionChanged="AnswersListBox_SelectionChanged">
             <ScrollViewer VerticalScrollBarVisibility="Visible"/>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border Width="{Binding Path=ActualWidth, ElementName=TestsListBox}"
+                    <Border Width="{Binding Path=ActualWidth, ElementName=AnswersListBox}"
                             Margin="-7,0,0,0"
                             Height="45"
                             CornerRadius="10"
@@ -34,18 +43,18 @@
                             </Image>
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <Label Content="{Binding surname}"/>
-                                    <Label Content="{Binding name}"/>
-                                    <Label Content="{Binding patronymic}"/>
+                                    <Label Content="{Binding User.Surname}"/>
+                                    <Label Content="{Binding User.Name}"/>
+                                    <Label Content="{Binding User.Patronymic}"/>
                                 </StackPanel>
                                 <TextBlock Margin="0,-7,0,0">
                                     <Run Text="Вопросов: " 
                                          Foreground="White"/>
-                                    <Run Text="{Binding correct}"
+                                    <Run Text="{Binding Correct}"
                                          Foreground="White"/>
                                     <Run Text="/" 
                                          Foreground="White"/>
-                                    <Run Text="{Binding count}"
+                                    <Run Text="{Binding Count}"
                                          Foreground="White"/>
                                 </TextBlock>
                             </StackPanel>
@@ -55,5 +64,11 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
+        <Button Grid.Row="2"
+                Content="Назад"
+                Width="120"
+                Height="40"
+                FontSize="20" Margin="340,5">
+        </Button>
     </Grid>
 </Page>

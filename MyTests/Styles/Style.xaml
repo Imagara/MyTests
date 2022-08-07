@@ -64,7 +64,8 @@
                     <Border Name="Border" 
                             CornerRadius="15"
                             Background="#33363C"
-                            BorderBrush="White" 
+                            BorderBrush="Black" 
+                            BorderThickness="1.5"
                             MouseEnter="MouseEnter" 
                             MouseLeave="MouseLeave">
                         <ContentPresenter HorizontalAlignment="Center" 

@@ -72,26 +72,6 @@ namespace MyTests.Pages
             }
 
         }
-        private void TestsListBox_Selectedd(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (((Tests)TestsListBox.SelectedItem) != null)
-                {
-                    Session.OpenedTest = cnt.db.Tests.Where(item => item.IdTest == ((Tests)TestsListBox.SelectedItem).IdTest).FirstOrDefault();
-                    Session.Points = 0;
-                    Session.CurQuestion = 0;
-                    Session.Quest.Content = cnt.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Content).ToArray();
-                    Session.Quest.Answer = cnt.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Answer).ToArray();
-
-                    NavigationService.Navigate(new Pages.CurTestPage());
-                }
-            }
-            catch
-            {
-                new ErrorWindow("Ошибка открытия теста.").ShowDialog();
-            }
-        }
 
         private void CheckResultsButton_Click(object sender, RoutedEventArgs e)
         {

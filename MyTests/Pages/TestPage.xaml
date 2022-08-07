@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:MyTests.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" 
-      d:DesignWidth="800">
+      d:DesignWidth="676">
     <Grid Background="{StaticResource color1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>

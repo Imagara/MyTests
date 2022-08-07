@@ -17,7 +17,7 @@ namespace MyTests.Pages
 
         private void AnswersButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Pages.TestPage(Session.OpenedTest.IdTest));
+            NavigationService.Navigate(new Pages.CheckTestResults(Session.OpenedTest, Session.User));
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)

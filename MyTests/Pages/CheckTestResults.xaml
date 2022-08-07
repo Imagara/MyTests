@@ -5,10 +5,54 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MyTests.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="CheckTestResults">
-
-    <Grid>
-        
+      d:DesignHeight="450" 
+      d:DesignWidth="676">
+    <Grid Background="{StaticResource color1}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Left">
+            <Image Name="TestImg"
+                   Source="/MyTests;component/Resources/Approval.png"
+                   Margin="7">
+            </Image>
+            <Label Name="TestName"
+                   Content="Название теста"
+                   FontSize="25">
+            </Label>
+        </StackPanel>
+        <ListBox Name="TestsListBox"
+                 Background="{StaticResource color1}"
+                 BorderBrush="{Binding TestsListBox}" 
+                 Grid.Row="1">
+            <ScrollViewer VerticalScrollBarVisibility="Visible"/>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Width="{Binding Path=ActualWidth, ElementName=TestsListBox}"
+                            Height="50"
+                            CornerRadius="10"
+                            Background="{StaticResource color2}">
+                        <StackPanel Orientation="Horizontal">
+                            <Label MinWidth="30"
+                                   Content="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},
+                                      Path=(ItemsControl.AlternationIndex)}"
+                                   VerticalContentAlignment="Center"
+                                   HorizontalContentAlignment="Center">
+                            </Label>
+                            <StackPanel>
+                                <Label Content="{Binding Questions.Content}"/>
+                                <TextBlock>
+                                <Run Text="Ответ: " Foreground="LightGray"/>
+                                <Run Text="{Binding Answer}" Foreground="White"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>
