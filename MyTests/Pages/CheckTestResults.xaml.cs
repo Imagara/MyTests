@@ -36,7 +36,7 @@ namespace MyTests.Pages
 
             int counter = 1;
 
-            foreach (Answers answer in cnt.db.Answers.Where(item => item.Questions.IdTest == _test.IdTest &&
+            foreach (Answers answer in cdb.db.Answers.Where(item => item.Questions.IdTest == _test.IdTest &&
                                                             item.IdUser == Session.User.IdUser).ToList())
             {
                 AnswerClass ac = new AnswerClass();

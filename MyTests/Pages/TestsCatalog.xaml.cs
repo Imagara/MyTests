@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MyTests.Pages
 {
@@ -32,11 +25,14 @@ namespace MyTests.Pages
         }
         void LoadingTests()
         {
-            List<Tests> list = cnt.db.Tests.Where(item => item.IsVisible == true && item.Questions.Count > 0).ToList();
+            List<Tests> list = cdb.db.Tests.Where(item => item.IsVisible == true && item.Questions.Count > 0).ToList();
             if (TestNameBox.Text != "Название теста")
                 list = list.Where(item => item.Name.StartsWith(TestNameBox.Text)).ToList();
+
             if (AuthorTestBox.Text != "Преподаватель")
-                list = list.Where(item => item.Users.Login.StartsWith(AuthorTestBox.Text)).ToList();
+                list = list.Where(item => item.Users.Surname.StartsWith(AuthorTestBox.Text) 
+                || item.Users.Name.StartsWith(AuthorTestBox.Text) 
+                || item.Users.Patronymic.StartsWith(AuthorTestBox.Text)).ToList();
             TestsListBox.ItemsSource = list;
         }
 
@@ -47,7 +43,7 @@ namespace MyTests.Pages
 
         private void TestNameBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            TestNameBox.Text = string.Empty;
+            ((TextBox)sender).Text = String.Empty;
         }
 
         private void TestNameBox_LostFocus(object sender, RoutedEventArgs e)
@@ -58,7 +54,7 @@ namespace MyTests.Pages
 
         private void AuthorTestBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            AuthorTestBox.Text = string.Empty;
+            ((TextBox)sender).Text = String.Empty;
         }
 
         private void AuthorTestBox_LostFocus(object sender, RoutedEventArgs e)
@@ -73,13 +69,19 @@ namespace MyTests.Pages
             {
                 if (((Tests)TestsListBox.SelectedItem) != null)
                 {
-                    Session.OpenedTest = cnt.db.Tests.Where(item => item.IdTest == ((Tests)TestsListBox.SelectedItem).IdTest).FirstOrDefault();
-                    Session.Points = 0;
-                    Session.CurQuestion = 0;
-                    Session.Quest.Content = cnt.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Content).ToArray();
-                    Session.Quest.Answer = cnt.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Answer).ToArray();
+                    Tests thisTest = cdb.db.Tests.Where(item => item.IdTest == ((Tests)TestsListBox.SelectedItem).IdTest).FirstOrDefault();
 
-                    NavigationService.Navigate(new Pages.CurTestPage());
+                    if ((!thisTest.CanAgain && cdb.db.Answers.Where(item => item.Questions.Tests.IdTest == thisTest.IdTest).Select(item => item.IdUser).Contains(Session.User.IdUser)) && Session.User.IdUser != thisTest.IdUser) //true - может пройти снова
+                        new ErrorWindow("Этот тест не может быть пройден повторно.").ShowDialog();
+                    else
+                    {
+                        Session.OpenedTest = thisTest;
+                        Session.Points = 0;
+                        Session.CurQuestion = 0;
+                        Session.Quest.Content = cdb.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Content).ToArray();
+                        Session.Quest.Answer = cdb.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Answer).ToArray();
+                        NavigationService.Navigate(new Pages.CurTestPage());
+                    }   
                 }
             }
             catch

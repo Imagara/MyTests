@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="2.75*"/>
+            <RowDefinition Height="20*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Border Grid.Row="1" 
@@ -28,6 +28,30 @@
                         Margin="10"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center">
+                <Label Content="Фамилия Имя Отчество:" 
+                       Foreground="{StaticResource TextColor}"
+                       Height="40" 
+                       Width="240"
+                       FontSize="20"/>
+                <TextBox Name="FIOBox" 
+                             Foreground="{StaticResource TextColor}"
+                             TextWrapping="Wrap" 
+                             VerticalAlignment="Top" 
+                             Height="40" 
+                             Width="240"
+                             FontSize="20"/>
+                <Label Content="Email:" 
+                       Foreground="{StaticResource TextColor}"
+                       Height="40" 
+                       Width="240"
+                       FontSize="20"/>
+                <TextBox Name="EmailBox" 
+                             Foreground="{StaticResource TextColor}"
+                             TextWrapping="Wrap" 
+                             VerticalAlignment="Top" 
+                             Height="40" 
+                             Width="240"
+                             FontSize="20"/>
                 <Label Content="Логин:" 
                        Foreground="{StaticResource TextColor}"
                        Height="40" 

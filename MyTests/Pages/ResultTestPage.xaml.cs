@@ -26,7 +26,7 @@ namespace MyTests.Pages
         }
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Pages.ProfilePage(cnt.db.Users.Where(item => item.IdUser == Session.OpenedTest.IdUser).FirstOrDefault()));
+            NavigationService.Navigate(new Pages.ProfilePage(cdb.db.Users.Where(item => item.IdUser == Session.OpenedTest.IdUser).FirstOrDefault()));
         }
     }
 }

@@ -41,7 +41,7 @@ namespace MyTests
         // Проверка на уникальность логина
         public static bool IsLoginAlreadyTaken(string login)
         {
-            return cnt.db.Users.Select(item => item.Login).Contains(login);
+            return cdb.db.Users.Select(item => item.Login).Contains(login);
         }
         // Валидация электронной почты
         public static bool IsValidEmail(string email)
@@ -54,7 +54,7 @@ namespace MyTests
         // Проверка на уникальность электронной почты
         public static bool IsEmailAlreadyTaken(string Email)
         {
-            return cnt.db.Users.Select(item => item.Email).Contains(Email);
+            return cdb.db.Users.Select(item => item.Email).Contains(Email);
         }
         public static string EncryptPassword(string password)
         {

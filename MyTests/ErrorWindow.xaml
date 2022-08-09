@@ -9,10 +9,12 @@
         MinHeight="120" 
         Height="120"
         Width="300" 
-        WindowStartupLocation="CenterScreen" 
+        WindowStartupLocation="CenterOwner" 
         WindowStyle="None" 
         ResizeMode="NoResize">
     <Border Background="#FF2D2D2D"
+            BorderBrush="Black"
+            BorderThickness="1"
             MouseDown="Border_MouseDown">
         <StackPanel>
             <TextBlock Name="ErrorLabel" 

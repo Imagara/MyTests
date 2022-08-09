@@ -8,6 +8,7 @@ namespace MyTests
         public ErrorWindow(string error)
         {
             InitializeComponent();
+            Owner = Application.Current.MainWindow;
             ErrorLabel.Text = error;
         }
         private void BackClick(object sender, RoutedEventArgs e)

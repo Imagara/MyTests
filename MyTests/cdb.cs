@@ -1,6 +1,6 @@
 ﻿namespace MyTests
 {
-    public class cnt
+    public class cdb
     {
         public static MyTestsDataBaseEntities db = new MyTestsDataBaseEntities();
     }

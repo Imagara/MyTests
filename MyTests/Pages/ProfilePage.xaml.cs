@@ -15,7 +15,7 @@ namespace MyTests.Pages
             InitializeComponent();
             TestsListBox.Items.Clear();
             user = _user;
-            UserName.Content = user.Login;
+            FIOLabel.Content = user.Surname + " " + user.Name + " " + user.Patronymic; 
             ProfileImage.Source = user.Image == null ?
                 new BitmapImage(new Uri("../Resources/StandartImage.png", UriKind.RelativeOrAbsolute)) :
                 ProfileImage.Source = ImagesFunctions.NewImage(user);
@@ -41,32 +41,31 @@ namespace MyTests.Pages
                 {
                     ProfileImage.Source = image;
                     Session.User.Image = ImagesFunctions.BitmapSourceToByteArray((BitmapSource)ProfileImage.Source);
-                    cnt.db.SaveChanges();
+                    cdb.db.SaveChanges();
                 }
             }
         }
         private void TestsLoading()
         {
             if (user != Session.User)
-                TestsListBox.ItemsSource = cnt.db.Tests.Where(item => item.IdUser == user.IdUser && item.IsVisible == true).ToList();
+                TestsListBox.ItemsSource = cdb.db.Tests.Where(item => item.IdUser == user.IdUser && item.IsVisible == true).ToList();
             else
-                TestsListBox.ItemsSource = cnt.db.Tests.Where(item => item.IdUser == user.IdUser).ToList();
+                TestsListBox.ItemsSource = cdb.db.Tests.Where(item => item.IdUser == user.IdUser).ToList();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             if (!Functions.IsValidEmail(EmailBox.Text))
                 new ErrorWindow("Email введен неверно.").Show();
-            else if (Functions.IsEmailAlreadyTaken(EmailBox.Text))
+            else if (Functions.IsEmailAlreadyTaken(EmailBox.Text) && EmailBox.Text != user.Email)
                 new ErrorWindow("Данный email уже используется.").Show();
             else
             {
                 Session.User.Email = EmailBox.Text;
                 Session.User.Info = InfoBox.Text;
-                cnt.db.SaveChanges();
+                cdb.db.SaveChanges();
                 new ErrorWindow("Успешно.").ShowDialog();
             }
-
         }
 
         private void CheckResultsButton_Click(object sender, RoutedEventArgs e)
@@ -88,11 +87,11 @@ namespace MyTests.Pages
             {
                 if (((Tests)TestsListBox.SelectedItem) != null)
                 {
-                    Session.OpenedTest = cnt.db.Tests.Where(item => item.IdTest == ((Tests)TestsListBox.SelectedItem).IdTest).FirstOrDefault();
+                    Session.OpenedTest = cdb.db.Tests.Where(item => item.IdTest == ((Tests)TestsListBox.SelectedItem).IdTest).FirstOrDefault();
                     Session.Points = 0;
                     Session.CurQuestion = 0;
-                    Session.Quest.Content = cnt.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Content).ToArray();
-                    Session.Quest.Answer = cnt.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Answer).ToArray();
+                    Session.Quest.Content = cdb.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Content).ToArray();
+                    Session.Quest.Answer = cdb.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Answer).ToArray();
 
                     NavigationService.Navigate(new Pages.CurTestPage());
                 }
@@ -112,12 +111,12 @@ namespace MyTests.Pages
                 confWindow.ShowDialog();
                 if (confWindow.answer)
                 {
-                    foreach (Answers answer in cnt.db.Answers.Where(item => item.Questions.IdTest == ((Tests)btn.DataContext).IdTest))
-                        cnt.db.Answers.Remove(answer);
-                    foreach (Questions question in cnt.db.Questions.Where(item => item.IdTest == ((Tests)btn.DataContext).IdTest))
-                        cnt.db.Questions.Remove(question);
-                    cnt.db.Tests.Remove((Tests)btn.DataContext);
-                    cnt.db.SaveChanges();
+                    foreach (Answers answer in cdb.db.Answers.Where(item => item.Questions.IdTest == ((Tests)btn.DataContext).IdTest))
+                        cdb.db.Answers.Remove(answer);
+                    foreach (Questions question in cdb.db.Questions.Where(item => item.IdTest == ((Tests)btn.DataContext).IdTest))
+                        cdb.db.Questions.Remove(question);
+                    cdb.db.Tests.Remove((Tests)btn.DataContext);
+                    cdb.db.SaveChanges();
                     TestsLoading();
                 }
             }

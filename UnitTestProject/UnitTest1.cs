@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using MyTests;
 namespace UnitTestProject
 {
@@ -9,7 +8,6 @@ namespace UnitTestProject
         [TestMethod]
         public void IsValidEmail()
         {
-            Assert.IsTrue(Functions.IsValidEmail("Matrix@gmail.com"));
             Assert.IsTrue(Functions.IsValidEmail("Imagine@mail.ru"));
             Assert.IsFalse(Functions.IsValidEmail("usermail.com"));
             Assert.IsFalse(Functions.IsValidEmail("usermailcom"));
@@ -25,15 +23,14 @@ namespace UnitTestProject
         [TestMethod]
         public void LoginTest()
         {
-            string login = "Matrix";
+            string login = "asdfkwet";
             string password = "meme3";
             Assert.IsTrue(Functions.LoginCheck(login, password));
         }
         [TestMethod]
         public void IsValidLoginAndPassword()
         {
-            Assert.IsTrue(Functions.IsValidLogAndPass("Matrix", "meme3"));
-            Assert.IsTrue(Functions.IsValidLogAndPass("Imagine", "pizza"));
+            Assert.IsTrue(Functions.IsValidLogAndPass("asdfkwet", "mEme3"));
             Assert.IsTrue(Functions.IsValidLogAndPass("Login???", "p@ssw0rd"));
             Assert.IsFalse(Functions.IsValidLogAndPass("", ""));
             Assert.IsFalse(Functions.IsValidLogAndPass("", "SimplePass"));
@@ -42,7 +39,6 @@ namespace UnitTestProject
         [TestMethod]
         public void IsLoginAlreadyTaken()
         {
-            Assert.IsTrue(Functions.IsLoginAlreadyTaken("Matrix"));
             Assert.IsTrue(Functions.IsLoginAlreadyTaken("Imagine"));
             Assert.IsFalse(Functions.IsLoginAlreadyTaken("SimpleLogin"));
             Assert.IsFalse(Functions.IsLoginAlreadyTaken("Login?"));
@@ -51,7 +47,6 @@ namespace UnitTestProject
         [TestMethod]
         public void IsEmailAlreadyTaken()
         {
-            Assert.IsTrue(Functions.IsEmailAlreadyTaken("Matrix@gmail.com"));
             Assert.IsTrue(Functions.IsEmailAlreadyTaken("Imagine@gmail.com"));
             Assert.IsFalse(Functions.IsEmailAlreadyTaken("user3@mail.ru"));
             Assert.IsFalse(Functions.IsEmailAlreadyTaken("user42@gmail.com"));
@@ -60,14 +55,14 @@ namespace UnitTestProject
         [TestMethod]
         public void IsLogEqualPass()
         {
-            Assert.IsFalse(Functions.IsLogEqualPass("Matrix", "Matrix"));
-            Assert.IsTrue(Functions.IsLogEqualPass("Matrix", "meme3"));
+            Assert.IsFalse(Functions.IsLogEqualPass("asdfkwet", "asdfkwet"));
+            Assert.IsTrue(Functions.IsLogEqualPass("asdfkwet", "mEme3"));
         }
         [TestMethod]
         public void IsValidLength()
         {
-            Assert.IsTrue(Functions.IsValidLength("Matrix"));
-            Assert.IsTrue(Functions.IsValidLength("Matrwerwewe"));
+            Assert.IsTrue(Functions.IsValidLength("mwerogf20"));
+            Assert.IsTrue(Functions.IsValidLength("srwerwewe"));
             Assert.IsFalse(Functions.IsValidLength("Ma"));
             Assert.IsFalse(Functions.IsValidLength(""));
         }

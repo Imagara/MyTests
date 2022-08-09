@@ -112,6 +112,9 @@
     <Compile Include="Pages\TestsCatalog.xaml.cs">
       <DependentUpon>TestsCatalog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="QuestionAddToTestWindow.xaml.cs">
+      <DependentUpon>QuestionAddToTestWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Questions.cs">
       <DependentUpon>EDM.tt</DependentUpon>
     </Compile>
@@ -139,7 +142,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="cnt.cs" />
+    <Compile Include="cdb.cs" />
     <Compile Include="ConfirmationWindow.xaml.cs">
       <DependentUpon>ConfirmationWindow.xaml</DependentUpon>
     </Compile>
@@ -189,6 +192,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\TestsCatalog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuestionAddToTestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

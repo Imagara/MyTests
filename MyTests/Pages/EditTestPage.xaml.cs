@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MyTests.Pages
 {
@@ -26,19 +19,19 @@ namespace MyTests.Pages
             {
                 try
                 {
-                    int testId = cnt.db.Tests.Select(p => p.IdTest).DefaultIfEmpty(0).Max() + 1;
+                    int testId = cdb.db.Tests.Select(p => p.IdTest).DefaultIfEmpty(0).Max() + 1;
                     Tests newTest = new Tests()
                     {
                         IdTest = testId,
                         IdUser = Session.User.IdUser,
-                        Name = $"Новый тест {cnt.db.Tests.Where(item => item.IdUser == Session.User.IdUser).Count() + 1}",
+                        Name = $"Новый тест {cdb.db.Tests.Where(item => item.IdUser == Session.User.IdUser).Count() + 1}",
                         IsAnswersVisible = false,
                         IsVisible = false,
                         CanAgain = false
                     };
-                    cnt.db.Tests.Add(newTest);
-                    cnt.db.SaveChanges();
-                    test = cnt.db.Tests.Where(item => item.IdTest == testId).FirstOrDefault();
+                    cdb.db.Tests.Add(newTest);
+                    cdb.db.SaveChanges();
+                    test = cdb.db.Tests.Where(item => item.IdTest == testId).FirstOrDefault();
                 }
                 catch (Exception ex)
                 {
@@ -55,14 +48,16 @@ namespace MyTests.Pages
 
 
             TestNameBox.Text = test.Name;
-            TestImg.Source = test.Image == null ? new BitmapImage(new Uri("../Resources/Approval.png", UriKind.RelativeOrAbsolute)) : ImagesFunctions.NewImage(_test);
+            TestImg.Source = test.Image == null ? 
+                new BitmapImage(new Uri("../Resources/Approval.png", UriKind.RelativeOrAbsolute)) :
+                ImagesFunctions.NewImage(_test);
 
             QuestionsListBox.Items.Clear();
             QuestionsUpdate();
         }
         private void QuestionsUpdate()
         {
-            QuestionsListBox.ItemsSource = cnt.db.Questions.Where(item => item.IdTest == test.IdTest).ToList();
+            QuestionsListBox.ItemsSource = cdb.db.Questions.Where(item => item.IdTest == test.IdTest).ToList();
         }
 
         private void QuestionsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -72,7 +67,8 @@ namespace MyTests.Pages
 
         private void AddQuestionButton_Click(object sender, RoutedEventArgs e)
         {
-            //addQuestion here
+            new QuestionAddToTestWindow(test).ShowDialog();
+            QuestionsUpdate();
         }
         private void DeleteQuestionButton_Click(object sender, RoutedEventArgs e)
         {
@@ -84,8 +80,10 @@ namespace MyTests.Pages
                 {
                     try
                     {
-                        cnt.db.Questions.Remove(selected);
-                        cnt.db.SaveChanges();
+                        foreach (Answers answer in cdb.db.Answers.Where(item => item.IdQuestion == selected.IdQuestion))
+                            cdb.db.Answers.Remove(answer);
+                        cdb.db.Questions.Remove(selected);
+                        cdb.db.SaveChanges();
                     }
                     catch (Exception ex)
                     {
@@ -107,7 +105,7 @@ namespace MyTests.Pages
             {
                 TestImg.Source = image;
                 test.Image = ImagesFunctions.BitmapSourceToByteArray((BitmapSource)TestImg.Source);
-                cnt.db.SaveChanges();
+                cdb.db.SaveChanges();
             }
         }
 
@@ -121,7 +119,7 @@ namespace MyTests.Pages
             test.IsVisible = IsVisibleCB.IsChecked == true;
             test.IsAnswersVisible = IsAnswersVisibleCB.IsChecked == true;
             test.CanAgain = CanAgainCB.IsChecked == true;
-            cnt.db.SaveChanges();
+            cdb.db.SaveChanges();
         }
     }
 }

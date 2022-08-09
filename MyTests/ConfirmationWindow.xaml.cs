@@ -9,6 +9,7 @@ namespace MyTests
         public ConfirmationWindow(bool _answer = false)
         {
             InitializeComponent();
+            Owner = Application.Current.MainWindow;
             answer = _answer;
         }
         private void YesButton(object sender, RoutedEventArgs e)

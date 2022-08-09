@@ -25,20 +25,11 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="31"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Label Name="UserName"
-                       FontSize="16"
-                       Content="Имя"
-                       HorizontalAlignment="Center">
-                </Label>
                 <Image Name="ProfileImage"
                        MinHeight="100"
                        MinWidth="100"
                        Grid.Row="1"
-                       Margin="10,0,10,10"
+                       Margin="10"
                    Source="/MyTests;component/Resources/StandartImage.png"
                    MouseDown="EditImage_Click">
                 </Image>
@@ -49,40 +40,42 @@
                   Grid.Column="1"
                   Margin="10"
                   Background="{StaticResource color3}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="49"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0"
-                            Orientation="Horizontal">
-                    <Label Content="Email: "
+                <StackPanel Grid.Row="0">
+                    <Label Name="FIOLabel"
+                           Content="FIO"
+                           FontSize="22"
+                           FontWeight="Bold">
+                    </Label>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Email: "
                              Background="{x:Null}"
                              BorderBrush="{x:Null}"
                              FontSize="22"/>
-                    <TextBox Name="EmailBox"
+                        <TextBox Name="EmailBox"
                          Text=" "
                          FontSize="22"
                          Background="{x:Null}"
                          BorderBrush="{x:Null}"
                          Width="{Binding Path=ActualWidth, ElementName=UserInfoGrid}"
                               >
-                    </TextBox>
-                </StackPanel>
+                        </TextBox>
+                    </StackPanel>
 
-                <StackPanel Grid.Row="1"
+                    <StackPanel Grid.Row="1"
                             Orientation="Horizontal">
-                    <Label Content="Инфо: "
+                        <Label Content="Инфо: "
                          FontSize="22"
                          Background="{x:Null}"
                          BorderBrush="{x:Null}">
-                    </Label>
-                    <TextBox Name="InfoBox"
+                        </Label>
+                        <TextBox Name="InfoBox"
                          Text=""
                          FontSize="22"
                          Background="{x:Null}"
                          BorderBrush="{x:Null}"
                              Width="{Binding Path=ActualWidth, ElementName=UserInfoGrid}">
-                    </TextBox>
+                        </TextBox>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </Grid>
