@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/14/2022 12:14:13
--- Generated from EDMX file: C:\Users\gr692_gav\source\repos\MyTests\MyTests\EDM.edmx
+-- Date Created: 08/09/2022 06:03:40
+-- Generated from EDMX file: C:\Users\pc\source\repos\StTest\MyTests\EDM.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,6 +17,12 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_Answers_Questions]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Answers] DROP CONSTRAINT [FK_Answers_Questions];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Answers_Users]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Answers] DROP CONSTRAINT [FK_Answers_Users];
+GO
 IF OBJECT_ID(N'[dbo].[FK_Questions_Tests]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Questions] DROP CONSTRAINT [FK_Questions_Tests];
 GO
@@ -28,6 +34,9 @@ GO
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Answers]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Answers];
+GO
 IF OBJECT_ID(N'[dbo].[Questions]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Questions];
 GO
@@ -41,6 +50,15 @@ GO
 -- --------------------------------------------------
 -- Creating all tables
 -- --------------------------------------------------
+
+-- Creating table 'Answers'
+CREATE TABLE [dbo].[Answers] (
+    [IdUserAnswer] int  NOT NULL,
+    [IdQuestion] int  NOT NULL,
+    [IdUser] int  NOT NULL,
+    [Answer] nvarchar(150)  NOT NULL
+);
+GO
 
 -- Creating table 'Questions'
 CREATE TABLE [dbo].[Questions] (
@@ -56,7 +74,9 @@ CREATE TABLE [dbo].[Tests] (
     [IdTest] int  NOT NULL,
     [IdUser] int  NOT NULL,
     [Name] nvarchar(150)  NOT NULL,
-    [Image] varbinary(max)  NULL
+    [Image] varbinary(max)  NULL,
+    [IsAnswersVisible] bit  NOT NULL,
+    [IsVisible] bit  NOT NULL
 );
 GO
 
@@ -67,13 +87,23 @@ CREATE TABLE [dbo].[Users] (
     [Password] nvarchar(50)  NOT NULL,
     [Email] nvarchar(50)  NOT NULL,
     [Info] nvarchar(50)  NULL,
-    [Image] varbinary(max)  NULL
+    [Image] varbinary(max)  NULL,
+    [Post] nvarchar(25)  NOT NULL,
+    [Surname] nvarchar(50)  NOT NULL,
+    [Name] nvarchar(50)  NOT NULL,
+    [Patronymic] nvarchar(50)  NOT NULL
 );
 GO
 
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
+
+-- Creating primary key on [IdUserAnswer] in table 'Answers'
+ALTER TABLE [dbo].[Answers]
+ADD CONSTRAINT [PK_Answers]
+    PRIMARY KEY CLUSTERED ([IdUserAnswer] ASC);
+GO
 
 -- Creating primary key on [IdQuestion] in table 'Questions'
 ALTER TABLE [dbo].[Questions]
@@ -96,6 +126,36 @@ GO
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
+
+-- Creating foreign key on [IdQuestion] in table 'Answers'
+ALTER TABLE [dbo].[Answers]
+ADD CONSTRAINT [FK_Answers_Questions]
+    FOREIGN KEY ([IdQuestion])
+    REFERENCES [dbo].[Questions]
+        ([IdQuestion])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Answers_Questions'
+CREATE INDEX [IX_FK_Answers_Questions]
+ON [dbo].[Answers]
+    ([IdQuestion]);
+GO
+
+-- Creating foreign key on [IdUser] in table 'Answers'
+ALTER TABLE [dbo].[Answers]
+ADD CONSTRAINT [FK_Answers_Users]
+    FOREIGN KEY ([IdUser])
+    REFERENCES [dbo].[Users]
+        ([IdUser])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Answers_Users'
+CREATE INDEX [IX_FK_Answers_Users]
+ON [dbo].[Answers]
+    ([IdUser]);
+GO
 
 -- Creating foreign key on [IdTest] in table 'Questions'
 ALTER TABLE [dbo].[Questions]

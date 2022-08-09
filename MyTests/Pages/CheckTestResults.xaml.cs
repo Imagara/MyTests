@@ -28,7 +28,7 @@ namespace MyTests.Pages
             if (_user.Image == null)
                 AuthorImg.Source = new BitmapImage(new Uri("../Resources/StandartImage.png", UriKind.RelativeOrAbsolute));
             else
-                AuthorImg.Source = ImagesManip.NewImage(_user);
+                AuthorImg.Source = ImagesFunctions.NewImage(_user);
 
             AnswersListBox.Items.Clear();
 

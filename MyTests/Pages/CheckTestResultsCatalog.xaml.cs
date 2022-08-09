@@ -31,7 +31,7 @@ namespace MyTests.Pages
 
             foreach (Users user in cnt.db.Users.Where(item => item.Answers.Count() > 0))
             {
-                if(cnt.db.Answers.Select(item => item.Questions.IdTest + " " + item.IdUser).Contains(_test.IdTest + " " + user.IdUser))
+                if (cnt.db.Answers.Select(item => item.Questions.IdTest + " " + item.IdUser).Contains(_test.IdTest + " " + user.IdUser))
                 {
                     AnswerClass newUserAnswer = new AnswerClass();
                     newUserAnswer.User = user;
@@ -52,9 +52,10 @@ namespace MyTests.Pages
             Quest.Answer = cnt.db.Questions.Where(item => item.IdTest == test.IdTest).Select(it => it.Answer).ToArray();
             Quest.UserAnswer = cnt.db.Answers.Where(item => item.Users.IdUser == user.IdUser && item.Questions.IdTest == test.IdTest).Select(it => it.Answer).ToArray();
             int value = 0;
-            for (int i = 0; i < Quest.Answer.Length; i++)
-                if (Quest.Answer[i] == Quest.UserAnswer[i])
-                    value++;
+            if (Quest.Answer.Length == Quest.UserAnswer.Length)
+                for (int i = 0; i < Quest.Answer.Length; i++)
+                    if (Quest.Answer[i] == Quest.UserAnswer[i])
+                        value++;
             return value;
         }
 
@@ -62,9 +63,14 @@ namespace MyTests.Pages
         {
             if (((AnswerClass)AnswersListBox.SelectedItem) != null)
             {
-                NavigationService.Navigate(new Pages.CheckTestResults(test, 
+                NavigationService.Navigate(new Pages.CheckTestResults(test,
                     cnt.db.Users.Where(item => item.IdUser == ((AnswerClass)AnswersListBox.SelectedItem).User.IdUser).FirstOrDefault()));
             }
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
 
         public static class Quest

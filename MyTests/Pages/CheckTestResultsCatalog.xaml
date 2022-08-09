@@ -68,7 +68,8 @@
                 Content="Назад"
                 Width="120"
                 Height="40"
-                FontSize="20" Margin="340,5">
+                FontSize="20"
+                Click="BackButton_Click">
         </Button>
     </Grid>
 </Page>

@@ -5,7 +5,7 @@ using System.Windows.Media.Imaging;
 
 namespace MyTests
 {
-    internal class ImagesManip
+    internal class ImagesFunctions
     {
         public static byte[] BitmapSourceToByteArray(BitmapSource image)
         {
@@ -42,6 +42,23 @@ namespace MyTests
             try
             {
                 MemoryStream ms = new MemoryStream(user.Image);
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.StreamSource = ms;
+                image.EndInit();
+                return image;
+            }
+            catch
+            {
+                return new BitmapImage(new Uri("../Resources/StandartImage.png", UriKind.RelativeOrAbsolute));
+            }
+            
+        }
+        public static BitmapImage NewImage(Tests test)
+        {
+            try
+            {
+                MemoryStream ms = new MemoryStream(test.Image);
                 BitmapImage image = new BitmapImage();
                 image.BeginInit();
                 image.StreamSource = ms;

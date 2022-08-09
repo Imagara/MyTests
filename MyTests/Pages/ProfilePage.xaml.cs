@@ -9,17 +9,16 @@ namespace MyTests.Pages
 {
     public partial class ProfilePage : Page
     {
-        public static Users user;
+        static Users user;
         public ProfilePage(Users _user)
         {
             InitializeComponent();
             TestsListBox.Items.Clear();
             user = _user;
             UserName.Content = user.Login;
-            if (user.Image == null)
-                ProfileImage.Source = new BitmapImage(new Uri("../Resources/StandartImage.png", UriKind.RelativeOrAbsolute));
-            else
-                ProfileImage.Source = ImagesManip.NewImage(user);
+            ProfileImage.Source = user.Image == null ?
+                new BitmapImage(new Uri("../Resources/StandartImage.png", UriKind.RelativeOrAbsolute)) :
+                ProfileImage.Source = ImagesFunctions.NewImage(user);
             EmailBox.Text = user.Email;
             InfoBox.Text = user.Info;
             if (user != Session.User)
@@ -37,11 +36,11 @@ namespace MyTests.Pages
         {
             if (user == Session.User)
             {
-                BitmapImage image = ImagesManip.SelectImage();
+                BitmapImage image = ImagesFunctions.SelectImage();
                 if (image != null)
                 {
                     ProfileImage.Source = image;
-                    Session.User.Image = ImagesManip.BitmapSourceToByteArray((BitmapSource)ProfileImage.Source);
+                    Session.User.Image = ImagesFunctions.BitmapSourceToByteArray((BitmapSource)ProfileImage.Source);
                     cnt.db.SaveChanges();
                 }
             }

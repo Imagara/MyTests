@@ -12,8 +12,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Left">
+        <StackPanel Orientation="Horizontal">
             <Image Name="TestImg"
                    Source="/MyTests;component/Resources/Approval.png"
                    Margin="7">

@@ -109,9 +109,6 @@
     <Compile Include="Pages\ResultTestPage.xaml.cs">
       <DependentUpon>ResultTestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\TestPage.xaml.cs">
-      <DependentUpon>TestPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\TestsCatalog.xaml.cs">
       <DependentUpon>TestsCatalog.xaml</DependentUpon>
     </Compile>
@@ -150,7 +147,7 @@
       <DependentUpon>ErrorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Functions.cs" />
-    <Compile Include="ImagesManip.cs" />
+    <Compile Include="ImagesFunctions.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -188,10 +185,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ResultTestPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\TestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -256,6 +249,7 @@
       <DependentUpon>EDM.edmx</DependentUpon>
       <LastGenOutput>EDM.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Question-mark.png" />
     <Resource Include="Resources\Approval.png" />
     <Resource Include="Resources\Ico.png" />
     <Resource Include="Resources\Search.png" />

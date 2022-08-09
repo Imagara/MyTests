@@ -28,7 +28,7 @@ namespace MyTests.Pages
 
         private void AddTest_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new EditTestPage());
         }
         void LoadingTests()
         {

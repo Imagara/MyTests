@@ -31,12 +31,14 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderBrush" Value="Black"/>
         <Setter Property="Background" Value="#33363C"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
 
     <Style TargetType="PasswordBox">
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderBrush" Value="Black"/>
         <Setter Property="Background" Value="#33363C"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
 
     <Style TargetType="TextBlock">

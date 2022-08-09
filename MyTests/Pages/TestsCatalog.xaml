@@ -84,7 +84,7 @@
                                     <Label Content="{Binding Name}"/>
                                     <Label Content="{Binding Users.Login}"/>
                                 </StackPanel>
-                                <TextBlock Margin="0,-7,0,0">
+                                <TextBlock Margin="0,-6,0,0">
                                     <Run Text="Вопросов: " Foreground="White"/>
                                     <Run Text="{Binding Questions.Count, Mode=OneTime}" />
                                 </TextBlock>
