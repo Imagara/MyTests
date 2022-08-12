@@ -23,7 +23,7 @@ namespace MyTests.Pages
                 {
                     AnswerClass newUserAnswer = new AnswerClass();
                     newUserAnswer.User = user;
-                    newUserAnswer.Correct = CorrectAnswersCounter(_test, user);
+                    newUserAnswer.Correct = Functions.CorrectAnswersCounter(_test, user);
                     newUserAnswer.Count = cdb.db.Questions.Where(item => item.IdTest == _test.IdTest).Count();
 
                     answerList.Add(newUserAnswer);
@@ -34,17 +34,6 @@ namespace MyTests.Pages
             if (AnswersListBox.Items.Count == 0)
                 ResultLabel.Content = "На данный момент тест еще никто не прошел.";
 
-        }
-        public int CorrectAnswersCounter(Tests test, Users user)
-        {
-            Quest.Answer = cdb.db.Questions.Where(item => item.IdTest == test.IdTest).Select(it => it.Answer).ToArray();
-            Quest.UserAnswer = cdb.db.Answers.Where(item => item.Users.IdUser == user.IdUser && item.Questions.IdTest == test.IdTest).Select(it => it.Answer).ToArray();
-            int value = 0;
-            if (Quest.Answer.Length == Quest.UserAnswer.Length)
-                for (int i = 0; i < Quest.Answer.Length; i++)
-                    if (Quest.Answer[i] == Quest.UserAnswer[i])
-                        value++;
-            return value;
         }
 
         private void AnswersListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -59,12 +48,6 @@ namespace MyTests.Pages
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
-        }
-
-        public static class Quest
-        {
-            public static string[] Answer;
-            public static string[] UserAnswer;
         }
         public class AnswerClass
         {

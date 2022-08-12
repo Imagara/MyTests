@@ -64,5 +64,21 @@ namespace MyTests
                 return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x => x.ToString("X2")));
             }
         }
+        public static int CorrectAnswersCounter(Tests test, Users user)
+        {
+            Quest.Answer = cdb.db.Questions.Where(item => item.IdTest == test.IdTest).Select(it => it.Answer).ToArray();
+            Quest.UserAnswer = cdb.db.Answers.Where(item => item.Users.IdUser == user.IdUser && item.Questions.IdTest == test.IdTest).Select(it => it.Answer).ToArray();
+            int value = 0;
+            if (Quest.Answer.Length == Quest.UserAnswer.Length)
+                for (int i = 0; i < Quest.Answer.Length; i++)
+                    if (Quest.Answer[i] == Quest.UserAnswer[i])
+                        value++;
+            return value;
+        }
+        public static class Quest
+        {
+            public static string[] Answer;
+            public static string[] UserAnswer;
+        }
     }
 }

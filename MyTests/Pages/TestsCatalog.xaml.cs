@@ -80,9 +80,9 @@ namespace MyTests.Pages
         {
             try
             {
-                if (((Tests)TestsListBox.SelectedItem) != null)
+                if (((TestsClass)TestsListBox.SelectedItem) != null)
                 {
-                    Tests thisTest = cdb.db.Tests.Where(item => item.IdTest == ((Tests)TestsListBox.SelectedItem).IdTest).FirstOrDefault();
+                    Tests thisTest = cdb.db.Tests.Where(item => item.IdTest == ((TestsClass)TestsListBox.SelectedItem).test.IdTest).FirstOrDefault();
 
                     if (!thisTest.CanAgain && cdb.db.Answers.Where(item => item.Questions.Tests.IdTest == thisTest.IdTest).Select(item => item.IdUser).Contains(Session.User.IdUser) && Session.User.IdUser != thisTest.IdUser)
                         new ErrorWindow("Этот тест не может быть пройден повторно.").ShowDialog();
@@ -110,59 +110,3 @@ namespace MyTests.Pages
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//拯救我们被关在地下室

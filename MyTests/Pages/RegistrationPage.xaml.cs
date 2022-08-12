@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -44,7 +43,7 @@ namespace MyTests.Pages
                         Patronymic = fio[2]
                     };
                     cdb.db.Users.Add(newUser);
-                    cdb.db.SaveChanges(); ;
+                    cdb.db.SaveChanges();
                     new ErrorWindow("Успешная регистрация").ShowDialog();
                 }
             }
