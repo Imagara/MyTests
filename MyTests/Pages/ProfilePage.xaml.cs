@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -47,10 +48,20 @@ namespace MyTests.Pages
         }
         private void TestsLoading()
         {
-            if (user != Session.User)
-                TestsListBox.ItemsSource = cdb.db.Tests.Where(item => item.IdUser == user.IdUser && item.IsVisible == true).ToList();
-            else
-                TestsListBox.ItemsSource = cdb.db.Tests.Where(item => item.IdUser == user.IdUser).ToList();
+            List<Tests> list = user != Session.User ? cdb.db.Tests.Where(item => item.IdUser == user.IdUser && item.IsVisible == true).ToList() :
+                cdb.db.Tests.Where(item => item.IdUser == user.IdUser).ToList();
+
+            List<TestsClass> testsList = new List<TestsClass>();
+
+            foreach (Tests test in list)
+            {
+                TestsClass tc = new TestsClass();
+                tc.test = test;
+                tc.testImage = test.Image == null ? new BitmapImage(new Uri("../Resources/Approval.png", UriKind.RelativeOrAbsolute)) : ImagesFunctions.NewImage(test);
+                testsList.Add(tc);
+            }
+
+            TestsListBox.ItemsSource = testsList;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -71,14 +82,14 @@ namespace MyTests.Pages
         private void CheckResultsButton_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
-            if (btn.DataContext is Tests)
-                NavigationService.Navigate(new Pages.CheckTestResultsCatalog((Tests)btn.DataContext));
+            if (btn.DataContext is TestsClass)
+                NavigationService.Navigate(new Pages.CheckTestResultsCatalog(((TestsClass)btn.DataContext).test));
         }
         private void EditTestButton_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
-            if (btn.DataContext is Tests)
-                NavigationService.Navigate(new Pages.EditTestPage((Tests)btn.DataContext));
+            if (btn.DataContext is TestsClass)
+                NavigationService.Navigate(new Pages.EditTestPage(((TestsClass)btn.DataContext).test));
         }
 
         private void TestsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -105,21 +116,26 @@ namespace MyTests.Pages
         private void DeleteTestButton_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
-            if (btn.DataContext is Tests)
+            if (btn.DataContext is TestsClass)
             {
                 ConfirmationWindow confWindow = new ConfirmationWindow();
                 confWindow.ShowDialog();
                 if (confWindow.answer)
                 {
-                    foreach (Answers answer in cdb.db.Answers.Where(item => item.Questions.IdTest == ((Tests)btn.DataContext).IdTest))
+                    foreach (Answers answer in cdb.db.Answers.Where(item => item.Questions.IdTest == ((TestsClass)btn.DataContext).test.IdTest))
                         cdb.db.Answers.Remove(answer);
-                    foreach (Questions question in cdb.db.Questions.Where(item => item.IdTest == ((Tests)btn.DataContext).IdTest))
+                    foreach (Questions question in cdb.db.Questions.Where(item => item.IdTest == ((TestsClass)btn.DataContext).test.IdTest))
                         cdb.db.Questions.Remove(question);
-                    cdb.db.Tests.Remove((Tests)btn.DataContext);
+                    cdb.db.Tests.Remove(((TestsClass)btn.DataContext).test);
                     cdb.db.SaveChanges();
                     TestsLoading();
                 }
             }
+        }
+        public class TestsClass
+        {
+            public Tests test { get; set; }
+            public BitmapImage testImage { get; set; }
         }
     }
 }

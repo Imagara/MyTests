@@ -38,7 +38,7 @@ namespace MyTests.Pages
                         Login = LogBox.Text,
                         Password = Functions.EncryptPassword(PassBox.Password),
                         Email = EmailBox.Text,
-                        Post = "Пользователь",
+                        Post = cdb.db.Users.Count() == 0 ? "Преподаватель" : "Пользователь",
                         Surname = fio[0],
                         Name = fio[1],
                         Patronymic = fio[2]

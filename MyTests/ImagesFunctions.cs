@@ -67,7 +67,7 @@ namespace MyTests
             }
             catch
             {
-                return new BitmapImage(new Uri("../Resources/StandartImage.png", UriKind.RelativeOrAbsolute));
+                return new BitmapImage(new Uri("../Resources/Approval.png", UriKind.RelativeOrAbsolute));
             }
             
         }

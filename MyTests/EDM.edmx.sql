@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/09/2022 06:03:40
--- Generated from EDMX file: C:\Users\pc\source\repos\StTest\MyTests\EDM.edmx
+-- Date Created: 08/12/2022 17:57:11
+-- Generated from EDMX file: C:\Users\milic\source\repos\MyTests\MyTests\EDM.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -76,7 +76,8 @@ CREATE TABLE [dbo].[Tests] (
     [Name] nvarchar(150)  NOT NULL,
     [Image] varbinary(max)  NULL,
     [IsAnswersVisible] bit  NOT NULL,
-    [IsVisible] bit  NOT NULL
+    [IsVisible] bit  NOT NULL,
+    [CanAgain] bit  NOT NULL
 );
 GO
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 
 namespace MyTests.Pages
@@ -30,10 +31,22 @@ namespace MyTests.Pages
                 list = list.Where(item => item.Name.StartsWith(TestNameBox.Text)).ToList();
 
             if (AuthorTestBox.Text != "Преподаватель")
-                list = list.Where(item => item.Users.Surname.StartsWith(AuthorTestBox.Text) 
-                || item.Users.Name.StartsWith(AuthorTestBox.Text) 
+                list = list.Where(item => item.Users.Surname.StartsWith(AuthorTestBox.Text)
+                || item.Users.Name.StartsWith(AuthorTestBox.Text)
                 || item.Users.Patronymic.StartsWith(AuthorTestBox.Text)).ToList();
-            TestsListBox.ItemsSource = list;
+
+            List<TestsClass> testsList = new List<TestsClass>();
+
+            foreach (Tests test in list)
+            {
+                TestsClass tc = new TestsClass();
+                tc.test = test;
+                tc.testImage = test.Image == null ? new BitmapImage(new Uri("../Resources/Approval.png", UriKind.RelativeOrAbsolute)) : ImagesFunctions.NewImage(test);
+                testsList.Add(tc);
+            }
+
+            TestsListBox.ItemsSource = testsList;
+
         }
 
         private void FindTests_Click(object sender, RoutedEventArgs e)
@@ -71,7 +84,7 @@ namespace MyTests.Pages
                 {
                     Tests thisTest = cdb.db.Tests.Where(item => item.IdTest == ((Tests)TestsListBox.SelectedItem).IdTest).FirstOrDefault();
 
-                    if ((!thisTest.CanAgain && cdb.db.Answers.Where(item => item.Questions.Tests.IdTest == thisTest.IdTest).Select(item => item.IdUser).Contains(Session.User.IdUser)) && Session.User.IdUser != thisTest.IdUser) //true - может пройти снова
+                    if (!thisTest.CanAgain && cdb.db.Answers.Where(item => item.Questions.Tests.IdTest == thisTest.IdTest).Select(item => item.IdUser).Contains(Session.User.IdUser) && Session.User.IdUser != thisTest.IdUser)
                         new ErrorWindow("Этот тест не может быть пройден повторно.").ShowDialog();
                     else
                     {
@@ -81,13 +94,19 @@ namespace MyTests.Pages
                         Session.Quest.Content = cdb.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Content).ToArray();
                         Session.Quest.Answer = cdb.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Answer).ToArray();
                         NavigationService.Navigate(new Pages.CurTestPage());
-                    }   
+                    }
                 }
             }
             catch
             {
                 new ErrorWindow("Ошибка открытия теста.").ShowDialog();
             }
+        }
+
+        public class TestsClass
+        {
+            public Tests test { get; set; }
+            public BitmapImage testImage { get; set; }
         }
     }
 }

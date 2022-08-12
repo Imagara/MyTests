@@ -1,5 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyTests;
+using MyTests.Pages;
+using System.Linq;
+
 namespace UnitTestProject
 {
     [TestClass]
@@ -65,6 +68,16 @@ namespace UnitTestProject
             Assert.IsTrue(Functions.IsValidLength("srwerwewe"));
             Assert.IsFalse(Functions.IsValidLength("Вф"));
             Assert.IsFalse(Functions.IsValidLength(""));
+        }
+        public void CorrectAnswersCounterTest()
+        {
+            int testId = 1;
+            int userId = 1;
+            int expected = 1;
+            
+            Assert.AreEqual(new CheckTestResultsCatalog(null).CorrectAnswersCounter(cdb.db.Tests.Where(item => item.IdTest == testId).FirstOrDefault(),
+                cdb.db.Users.Where(item => item.IdUser == userId).FirstOrDefault()),
+                expected); 
         }
     }
 }

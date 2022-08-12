@@ -101,16 +101,16 @@
                                Height="30"
                                Margin="10,5,5,5"
                                HorizontalAlignment="Left"
-                               Source="/MyTests;component/Resources/approval.png">
+                               Source="{Binding testImage}">
                                 </Image>
                                 <StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                        <Label Content="{Binding Name}"/>
-                                        <Label Content="{Binding Users.Login}"/>
+                                        <Label Content="{Binding test.Name}"/>
+                                        <Label Content="{Binding test.Users.Login}"/>
                                     </StackPanel>
                                     <TextBlock Margin="0,-7,0,0">
                                     <Run Text="Вопросов: " Foreground="White"/>
-                                    <Run Text="{Binding Questions.Count, Mode=OneTime}"/>
+                                    <Run Text="{Binding test.Questions.Count, Mode=OneTime}"/>
                                     </TextBlock>
                                 </StackPanel>
                             </StackPanel>
