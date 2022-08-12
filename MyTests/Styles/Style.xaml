@@ -99,7 +99,6 @@
         </Setter>
     </Style>
 
-    <!--SCROLLBARS-->
     <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
         <Setter Property="Foreground" Value="#FF2D2D30"/>
         <Setter Property="Template">

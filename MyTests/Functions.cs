@@ -56,6 +56,7 @@ namespace MyTests
         {
             return cdb.db.Users.Select(item => item.Email).Contains(Email);
         }
+        // Шифрование пароля
         public static string EncryptPassword(string password)
         {
             using (var hash = SHA1.Create())
