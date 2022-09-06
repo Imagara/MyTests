@@ -19,7 +19,7 @@ namespace MyTests.Pages
             FIOLabel.Content = user.Surname + " " + user.Name + " " + user.Patronymic; 
             ProfileImage.Source = user.Image == null ?
                 new BitmapImage(new Uri("../Resources/StandartImage.png", UriKind.RelativeOrAbsolute)) :
-                ProfileImage.Source = ImagesFunctions.NewImage(user);
+                ImagesFunctions.NewImage(user);
             EmailBox.Text = user.Email;
             InfoBox.Text = user.Info;
             if (user != Session.User)
