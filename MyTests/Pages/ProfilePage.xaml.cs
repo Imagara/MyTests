@@ -98,7 +98,7 @@ namespace MyTests.Pages
             {
                 if (((Tests)TestsListBox.SelectedItem) != null)
                 {
-                    Session.OpenedTest = cdb.db.Tests.Where(item => item.IdTest == ((Tests)TestsListBox.SelectedItem).IdTest).FirstOrDefault();
+                    Session.OpenedTest = cdb.db.Tests.Where(item => item.IdTest == ((TestsClass)TestsListBox.SelectedItem).test.IdTest).FirstOrDefault();
                     Session.Points = 0;
                     Session.CurQuestion = 0;
                     Session.Quest.Content = cdb.db.Questions.Where(item => item.IdTest == Session.OpenedTest.IdTest).Select(item => item.Content).ToArray();
