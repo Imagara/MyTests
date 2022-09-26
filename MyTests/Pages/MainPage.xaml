@@ -18,7 +18,8 @@
                     Height="30"
                     Margin="5"
                     Content="Создать тест"
-                    Click="CreateTestClick">
+                    Click="CreateTestClick"
+                    Visibility="Collapsed">
             </Button>
             <Button Height="30"
                     Margin="5"
